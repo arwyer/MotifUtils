@@ -1,0 +1,104 @@
+{
+    "ver": "0.0.1",
+    "authors": [
+        "arwyer"
+    ],
+    "contact": "",
+    "categories": ["active"],
+    "widgets": {
+        "input": null,
+        "output": null
+    },
+    "parameters": [
+        {
+            "id": "format",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "dropdown",
+            "dropdown_options": {
+                "options": [
+                    {
+                        "value": "MEME",
+                        "display": "MEME"
+                    },
+                    {
+                        "value": "JASPAR",
+                        "display": "JASPAR"
+                    },
+                    {
+                        "value": "HOMER",
+                        "display": "HOMER"
+                    },
+                    {
+                        "value": "GIBBS",
+                        "display": "GIBBS"
+                    },
+                    {
+                        "value": "TRANSFAC",
+                        "display": "TRANSFAC"
+                    }
+                ]
+            }
+        },
+        {
+          "id" : "path",
+          "optional" : false,
+          "advanced" : false,
+          "allow_multiple" : false,
+          "default_values" : [ "" ],
+          "field_type" : "dynamic_dropdown",
+          "dynamic_dropdown_options" : {
+            "data_source": "ftp_staging"
+          }
+        },
+        {
+          "id" : "obj_name",
+          "optional" : false,
+          "advanced" : false,
+          "allow_multiple" : false,
+          "default_values" : [ "" ],
+          "field_type" : "text",
+          "text_options" : {
+            "is_output_name" : true
+          }
+        }
+    ],
+    "behavior": {
+        "service-mapping": {
+            "url": "",
+            "name": "MotifUtils",
+            "method": "importFromNarrative",
+            "input_mapping": [
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "ws_name"
+                },
+                {
+                    "input_parameter": "format",
+                    "target_property": "format"
+                },
+                {
+                    "input_parameter": "obj_name",
+                    "target_property": "obj_name"
+                },
+                {
+                    "input_parameter": "path",
+                    "target_property": "path"
+                }
+            ],
+            "output_mapping": [
+                {
+                    "service_method_output_path": [0],
+                    "target_property": "output"
+                },
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "workspaceName"
+                }
+            ]
+        }
+    },
+    "job_id_output_field": "docker"
+}

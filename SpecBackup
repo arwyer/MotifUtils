@@ -1,0 +1,64 @@
+/*
+NOTES:
+What do we need to be able to do with a MotifSet?
+Convert and save motifset in common format(JASPAR, etc.)
+Save motifSet to shock
+Pull motifset from shock
+Save motifSet to workspace
+
+
+functions:
+save - take a motifset
+upload - take an external format(JASPAR) and convert it to KBase motifset
+download - take a motifset object and create an external format(JASPAR)
+export - download file from shock to workspace as an object?
+
+dfu.save_objects -> use this when you want to make an object
+dfu.get_objects -> use this to get object from shock
+
+destination_ref - ws_name / object_name
+convert ws_name to id, used by save_objects
+*/
+
+
+/*
+-commenting out for now
+typedef structure{
+
+} ExportParams;
+
+typedef structure{
+
+} ExportOutput;
+
+funcdef ExportMotifSet()
+  returns ()  authentication required;
+*/
+/*
+typedef structure{
+  string ws_name;
+  string object_name;
+  string filepath;
+  string format;
+
+} UploadParams;
+
+typedef structure{
+  string obj_ref;
+} UploadOutput;
+
+funcdef UploadMotifSet(UploadParams params)
+  returns (UploadOutput output)  authentication required;
+
+typedef structure{
+  string source_ref;
+  string format;
+} DownloadParams;
+
+typedef structure{
+  string destination_dir;
+} DownloadOutput;
+
+funcdef DownloadMotifSet(DownloadParams params)
+  returns (DownloadOutput output)  authentication required;
+*/
