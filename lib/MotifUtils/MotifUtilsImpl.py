@@ -183,7 +183,7 @@ class MotifUtils:
             print('NOT YET IMPLENTED')
         if format == 'TRANSFAC':
             print('NOT YET IMPLENTED')
-        if format == 'GENERIC'
+        if format == 'GENERIC':
             print('NOT YET IMPLENTED')
 
         #END importFromNarrative
