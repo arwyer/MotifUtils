@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 #BEGIN_HEADER
-import MotifUtils.Utils.ParseMotifFile as PMF
+import os
+import MotifUtils.Utils.MemeUtil as MU
+import MotifUtils.Utils.GibbsUtil as GU
+import MotifUtils.Utils.HomerUtil as HU
+import MotifUtils.Utils.MotifSetUtil as MSU
+from DataFileUtil.DataFileUtilClient import DataFileUtil
+
 #END_HEADER
 
 
@@ -30,6 +36,8 @@ class MotifUtils:
     # be found
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
+        self.callback_url = os.environ['SDK_CALLBACK_URL']
+        self.shared_folder = config['scratch']
         #END_CONSTRUCTOR
         pass
 
@@ -85,6 +93,33 @@ class MotifUtils:
         # ctx is the context object
         # return variables are: output
         #BEGIN UploadFromMEME
+        print('Extracting motifs')
+        motifList = MU.parse_meme_output(params['path'])
+        print(motifList)
+
+        MSO = {}
+        MSO['Condition'] = 'Temp'
+        MSO['SequenceSet_ref'] = '123'
+        MSO['Motifs'] = []
+        MSO['Alphabet'] = ['A','C','G','T']
+        MSO['Background'] = {}
+        for letter in MSO['Alphabet']:
+            MSO['Background'][letter] = 0.0
+
+        MSU.parseMotifList(motifList,MSO)
+        dfu = DataFileUtil(self.callback_url)
+        save_objects_params = {}
+        save_objects_params['id'] = dfu.ws_name_to_id(params['ws_name'])
+        save_objects_params['objects'] = [{'type': 'KBaseGwasData.MotifSet' , 'data' : MSO , 'name' : params['obj_name']}]
+
+        info = dfu.save_objects(save_objects_params)[0]
+        print('SAVED OBJECT')
+        print(info)
+        motif_set_ref = "%s/%s/%s" % (info[6], info[0], info[4])
+        print(motif_set_ref)
+        output = {'obj_ref' : motif_set_ref}
+        print(output)
+
         #END UploadFromMEME
 
         # At some point might do deeper type checking...
@@ -168,20 +203,45 @@ class MotifUtils:
         # return variables are: out
         #BEGIN importFromNarrative
 
+        file_path = ''
         #Move Staging file to work
+        if params.get('local_path'):
+            file_path = params.get('local_path')
+        elif params.get('shock_id'):
+            file_path = self.dfu.shock_to_file(
+                {'shock_id': params['shock_id'],
+                 'file_path': self.scratch}).get('file_path')
+        elif params.get('staging_path'):
+            file_path = self.dfu.download_staging_file(
+                        {'staging_file_subdir_path': params.get('staging_path')}
+                        ).get('copy_file_path')
+
+        format = params['format']
+        new_params = dict(params)
+        new_params.pop('format',None)
+        new_params.pop('staging_path',None)
+        new_params.pop('local_path',None)
+        new_params.pop('shock_id',None)
+        new_params['path'] = file_path
+
         validFormats = ['MEME','JASPAR','GIBBS','HOMER','TRANSFAC','GENERIC']
 
+        out = {}
+
         if format == 'MEME':
-            newparams['ws_name'] = params['ws_name']
-            #newparams
-            print('NOT YET IMPLENTED')
+            out = self.UploadFromMEME(ctx,new_params)[0]
+            #print(out)
+            #print('NOT YET IMPLENTED')
         if format == 'JASPAR':
+            return self.UploadFromJASPAR(ctx,new_params)
             print('NOT YET IMPLENTED')
         if format == 'GIBBS':
+            out = self.UploadFromGibbs(ctx,new_params)
             print('NOT YET IMPLENTED')
         if format == 'HOMER':
             print('NOT YET IMPLENTED')
         if format == 'TRANSFAC':
+            return self.UploadFromTRANSFAC(ctx,new_params)
             print('NOT YET IMPLENTED')
         if format == 'GENERIC':
             print('NOT YET IMPLENTED')

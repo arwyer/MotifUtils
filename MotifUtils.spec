@@ -47,7 +47,9 @@ typedef structure{
 
 typedef structure{
   string ws_name;
-  string path;
+  string staging_path;
+  string local_path;
+  string shock_id;
   string format;
   string obj_name;
 } ImportNarrativeInParams;

@@ -13,6 +13,7 @@ except:
 
 from pprint import pprint  # noqa: F401
 
+from DataFileUtil.DataFileUtilClient import DataFileUtil
 from biokbase.workspace.client import Workspace as workspaceService
 from MotifUtils.MotifUtilsImpl import MotifUtils
 from MotifUtils.MotifUtilsServer import MethodContext
@@ -76,7 +77,7 @@ class MotifUtilsTest(unittest.TestCase):
         return self.__class__.ctx
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
-    def test_your_method(self):
+    def test_import_meme(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
         #                                  'objects': []})
@@ -86,4 +87,17 @@ class MotifUtilsTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
+        params = {}
+        params['local_path'] = '/kb/module/test/test_data/MEMEData.txt'
+        params['ws_name'] = self.getWsName()
+        params['format'] = 'MEME'
+        params['obj_name'] = 'TestObject'
+        dfu = DataFileUtil(self.callback_url)
+        #ret = self.getImpl().importFromNarrative(self.getContext(),params)[0]
+        #print(ret)
+        result = self.getImpl().importFromNarrative(self.getContext(),params)
+        get_objects_params = {}
+        get_objects_params['object_refs'] = [result[0]['obj_ref']]
+        MotifSet = dfu.get_objects(get_objects_params)['data'][0]['data']
+
         pass
