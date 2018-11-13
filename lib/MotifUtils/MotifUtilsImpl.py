@@ -107,6 +107,15 @@ class MotifUtils:
             MSO['Background'][letter] = 0.0
 
         MSU.parseMotifList(motifList,MSO)
+        if 'absolute_locations' in params:
+            for motif in MSO['Motifs']:
+                for loc in motif['Motif_Locations']:
+                    if loc['sequence_id'] in params['absolute_locations']:
+                        loc['sequence_id'] = params['contig']
+                        absStart = int(params['start'])
+                        loc['start'] = absStart
+                        loc['end'] = absStart + loc['end']
+
         dfu = DataFileUtil(self.callback_url)
         save_objects_params = {}
         save_objects_params['id'] = dfu.ws_name_to_id(params['ws_name'])

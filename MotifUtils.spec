@@ -70,10 +70,14 @@ typedef structure{
   string obj_name;
 } UploadTRANSFACInParams;
 
+/*
+optional - absolute_locations
+*/
 typedef structure{
   string path;
   string ws_name;
   string obj_name;
+  mapping<string, string> absolute_locations;
 } UploadMEMEInParams;
 
 typedef structure{
