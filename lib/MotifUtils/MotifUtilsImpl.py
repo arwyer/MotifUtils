@@ -5,6 +5,7 @@ import MotifUtils.Utils.MemeUtil as MU
 import MotifUtils.Utils.GibbsUtil as GU
 import MotifUtils.Utils.HomerUtil as HU
 import MotifUtils.Utils.MotifSetUtil as MSU
+import MotifUtils.Utils.Downloads as MD
 from DataFileUtil.DataFileUtilClient import DataFileUtil
 
 #END_HEADER
@@ -53,6 +54,41 @@ class MotifUtils:
         # ctx is the context object
         # return variables are: output
         #BEGIN UploadFromGibbs
+        print('Extracting motifs')
+        motifList = GU.parse_gibbs_output(params['path'])
+        print(motifList)
+
+        MSO = {}
+        MSO['Condition'] = 'Temp'
+        MSO['SequenceSet_ref'] = '123'
+        MSO['Motifs'] = []
+        MSO['Alphabet'] = ['A','C','G','T']
+        MSO['Background'] = {}
+        for letter in MSO['Alphabet']:
+            MSO['Background'][letter] = 0.0
+
+        MSU.parseMotifList(motifList,MSO)
+        if 'absolute_locations' in params:
+            for motif in MSO['Motifs']:
+                for loc in motif['Motif_Locations']:
+                    if loc['sequence_id'] in params['absolute_locations']:
+                        loc['sequence_id'] = params['contig']
+                        absStart = int(params['start'])
+                        loc['start'] = absStart
+                        loc['end'] = absStart + loc['end']
+
+        dfu = DataFileUtil(self.callback_url)
+        save_objects_params = {}
+        save_objects_params['id'] = dfu.ws_name_to_id(params['ws_name'])
+        save_objects_params['objects'] = [{'type': 'KBaseGwasData.MotifSet' , 'data' : MSO , 'name' : params['obj_name']}]
+
+        info = dfu.save_objects(save_objects_params)[0]
+        print('SAVED OBJECT')
+        print(info)
+        motif_set_ref = "%s/%s/%s" % (info[6], info[0], info[4])
+        print(motif_set_ref)
+        output = {'obj_ref' : motif_set_ref}
+        print(output)
         #END UploadFromGibbs
 
         # At some point might do deeper type checking...
@@ -189,6 +225,23 @@ class MotifUtils:
         # ctx is the context object
         # return variables are: output
         #BEGIN DownloadMotifSet
+        #fname = params[]
+        dfu = DataFileUtil(self.callback_url)
+        get_object_params = {'object_refs' : [params['source_ref']]} #grab motifset object
+        MSO = dfu.get_objects(get_object_params)['data'][0]['data']
+        output = ''
+        if params['format'] == 'MEME':
+            output = MD.MotifSetToMEME(MSO)
+        else:
+            print('FORMAT IS NOT RECOGNIZED OR SUPPORTED')
+            print('Supported Formats: MEME JASPAR TRANSFAC')
+            print('Implemented: MEME')
+        outFilePath = '/kb/module/work/tmp/' + params['outname']
+        with open(outFilePath) as outFile:
+            outFile.write(output)
+        output = {'destination_path': outFilePath}
+
+
         #TODO: add this...
         #END DownloadMotifSet
 

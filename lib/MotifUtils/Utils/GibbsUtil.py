@@ -4,7 +4,9 @@ import json
 
 def build_gibbs_command(inputFilePath, motifLen):
     #outputFilePath = '/kb/module/work/tmp/gibbs_output.txt'
-    outputFilePath = '/kb/module/work/tmp/gibbs_output_' + str(motifLen) +  '.txt'
+    if not os.path.exists('/kb/module/work/tmp/gibbs'):
+        os.mkdir('/kb/module/work/tmp/gibbs')
+    outputFilePath = '/kb/module/work/tmp/gibbs/gibbs_output_' + str(motifLen) +  '.txt'
 
     #outputFilePath = './temp/gibbs_output.txt'
     length = '8'

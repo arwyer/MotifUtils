@@ -39,10 +39,11 @@ typedef structure{
   string ws_name;
   string source_ref;
   string format;
+  string outname;
 } DownloadParams;
 
 typedef structure{
-  string destination_dir;
+  string destination_path;
 } DownloadOutput;
 
 typedef structure{
