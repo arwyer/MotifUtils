@@ -31,6 +31,7 @@ def run_homer_command(command):
     #os.system(command)
 
 def parse_homer_output(path,location):
+
     #outputDirPath = '/kb/module/work/tmp/homer_out'
     #outputDirPath = './temp/homer_out'
     #comment no cache
