@@ -1,4 +1,4 @@
-
+from copy import deepcopy
 
 #TODO: extract sequence from output files, add to motif object
 def ConvertMotif(motif,MotifSet):
@@ -31,4 +31,4 @@ def ConvertMotif(motif,MotifSet):
 
 def parseMotifList(MotifList, MotifSet):
     for motif in MotifList:
-        MotifSet['Motifs'].append(ConvertMotif(motif,MotifSet))
+        MotifSet['Motifs'].append(deepcopy(ConvertMotif(motif,MotifSet)))

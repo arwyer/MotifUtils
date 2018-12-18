@@ -7,6 +7,7 @@ import MotifUtils.Utils.HomerUtil as HU
 import MotifUtils.Utils.MotifSetUtil as MSU
 import MotifUtils.Utils.Downloads as MD
 from DataFileUtil.DataFileUtilClient import DataFileUtil
+from copy import deepcopy
 
 #END_HEADER
 
@@ -68,6 +69,11 @@ class MotifUtils:
             MSO['Background'][letter] = 0.0
 
         MSU.parseMotifList(motifList,MSO)
+        for motif in MSO['Motifs']:
+            for letter in MSO['Alphabet']:
+                if len(motif['PWM'][letter]) != len(motif['Iupac_sequence']):
+                    print('CAUGHT PWM ERROR HERE')
+                    exit(1)
         if 'absolute_locations' in params:
             for motif in MSO['Motifs']:
                 for loc in motif['Motif_Locations']:
@@ -167,6 +173,7 @@ class MotifUtils:
         print('Extracting motifs')
         motifList = MU.parse_meme_output(params['path'])
         print(motifList)
+
 
         MSO = {}
         MSO['Condition'] = 'Temp'
