@@ -16,9 +16,12 @@ def ConvertMotif(motif,MotifSet):
     newMotif['Iupac_sequence'] = motif['Iupac_signature']
     newMotif['PWM'] = {}
     newMotif['PFM'] = {}
+
     for letter in MotifSet['Alphabet']:
         newMotif['PWM'][letter] = []
         newMotif['PFM'][letter] = []
+    if len(motif['pwm']) != len(motif['Iupac_signature']):
+        print('LENGTH MISMATCH')
     for row in motif['pwm']:
         for pair in row:
             newMotif['PWM'][pair[0]].append(pair[1])
