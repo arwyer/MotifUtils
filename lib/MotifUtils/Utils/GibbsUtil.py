@@ -53,6 +53,10 @@ def parse_gibbs_output(path):
                         if motifDict['Iupac_signature'] == m['Iupac_signature']:
                             motifIncluded = True
                     if not motifIncluded:
+                        if (len(motifDict['pwm']) != len(motifDict['Iupac_signature']):
+                            print(outputFilePath)
+                            print(motifDict['Iupac_signature'])
+                            print(len(motifDict['pwm']))
                         motifList.append(motifDict)
                     motifDict = {}
                     motifDict['Locations'] = []
