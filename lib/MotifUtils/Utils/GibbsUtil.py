@@ -99,7 +99,7 @@ def parse_gibbs_output(path):
                                 rowList.append(('G',.25))
                                 rowList.append(('T',.25))
                                 pwmList.append(rowList)
-                    baseCount += 1
+                    #baseCount += 1
                     elems = line.split()
                     rowList = []
                     rowList.append(('A',float(elems[2])))
