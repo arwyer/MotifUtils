@@ -88,6 +88,17 @@ def parse_gibbs_output(path):
                     processPWM = False
                     motifDict['pwm'] = pwmList
                 elif '|' in line:
+                    before = after
+                    after = int(line.split()[0])
+                    if before != -1 and after != -1:
+                        if (after-before) != 1:
+                            for i in range(0,(before-after)):
+                                rowList = []
+                                rowList.append(('A',.25))
+                                rowList.append(('C',.25))
+                                rowList.append(('G',.25))
+                                rowList.append(('T',.25))
+                                pwmList.append(rowList)
                     baseCount += 1
                     elems = line.split()
                     rowList = []
@@ -96,14 +107,6 @@ def parse_gibbs_output(path):
                     rowList.append(('G',float(elems[5])))
                     rowList.append(('T',float(elems[3])))
                     pwmList.append(rowList)
-                elif len(line.split()) == 0:
-                    if baseCount < MotifLen:
-                        rowList = []
-                        rowList.append(('A',.25))
-                        rowList.append(('C',.25))
-                        rowList.append(('G',.25))
-                        rowList.append(('T',.25))
-                        pwmList.append(rowList)
 
 
             elif 'columns' in line:
@@ -111,7 +114,8 @@ def parse_gibbs_output(path):
                 processLoc = True
             elif 'Motif probability model' in line:
                 processPWM = True
-                baseCount = 0
+                before = -1
+                after = -1
 
     #jsonFilePath = outputFileDir + '/gibbs.json'
     #with open(jsonFilePath,'w') as jsonFile:
