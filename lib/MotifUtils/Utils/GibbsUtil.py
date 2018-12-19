@@ -1,6 +1,13 @@
 import sys
 import os
 import json
+from Bio import motifs
+from Bio import SeqIO
+from Bio.Alphabet import IUPAC
+try:
+    from cStringIO import StringIO
+except:
+    from StringIO import StringIO
 
 def build_gibbs_command(inputFilePath, motifLen):
     #outputFilePath = '/kb/module/work/tmp/gibbs_output.txt'
@@ -49,6 +56,26 @@ def parse_gibbs_output(path):
                     processLoc = False
                     gotSig = False
                     motifDict['p-value'] = -1.0
+
+                    a = []
+                    c = []
+                    g = []
+                    t = []
+                    for row in pwm:
+                        a.append(row[0][1])
+                        c.append(row[1][1])
+                        g.append(row[2][1])
+                        t.append(row[3][1])
+
+                    motifStr = '>test\n'
+                    motifStr += 'A ' + str(a).replace(',','') + '\n'
+                    motifStr += 'C ' + str(c).replace(',','') + '\n'
+                    motifStr += 'G ' + str(g).replace(',','') + '\n'
+                    motifStr += 'T ' + str(t).replace(',','') + '\n'
+                    handle = StringIO(motifStr)
+                    BioMotif = motifs.read(handle, 'jaspar')
+                    motifDict['Iupac_signature']=str(BioMotif.degenerate_consensus)
+
                     for m in motifList:
                         if motifDict['Iupac_signature'] == m['Iupac_signature']:
                             motifIncluded = True
@@ -67,7 +94,7 @@ def parse_gibbs_output(path):
                     elems = line.split()
                     if not gotSig:
                         motif = elems[4]
-                        motifDict['Iupac_signature'] = motif
+                        #motifDict['Iupac_signature'] = motif
                         gotSig = True
                     locList = []
                     if len(line.split()) == 10:
