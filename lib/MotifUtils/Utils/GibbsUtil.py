@@ -42,6 +42,8 @@ def parse_gibbs_output(path):
         #TODO: keeping p-value as -1 until I understand the output stats better
         motifDict['Locations'] = []
         for line in gibbsFile:
+            if 'nMotifLen' in line:
+                MotifLen = int(line.split()[2])
             if processLoc is True:
                 if '****' in line:
                     processLoc = False
@@ -95,7 +97,7 @@ def parse_gibbs_output(path):
                     rowList.append(('T',float(elems[3])))
                     pwmList.append(rowList)
                 elif len(line.split()) == 0:
-                    if baseCount < motifLength:
+                    if baseCount < MotifLen:
                         rowList = []
                         rowList.append(('A',.25))
                         rowList.append(('C',.25))
