@@ -61,7 +61,7 @@ def parse_gibbs_output(path):
                     c = []
                     g = []
                     t = []
-                    for row in pwm:
+                    for row in motifDict['pwm']:
                         a.append(row[0][1])
                         c.append(row[1][1])
                         g.append(row[2][1])
