@@ -1,9 +1,14 @@
 from copy import deepcopy
 
 def CheckLength(motifset,min,max):
-    for i,motif in enumerate(list(motifset['Motifs'])):
+    topop = []
+    for i,motif in enumerate(motifset['Motifs']):
         if len(motif['Iupac_sequence']) < min or len(motif['Iupac_sequence']) > max:
-            motifset['Motifs'].pop(i)
+            topop.append(i)
+        topop.sort(reverse=True)
+        for p in topop:
+            motifset['Motifs'].pop(p)
+
 
 #TODO: extract sequence from output files, add to motif object
 def ConvertMotif(motif,MotifSet):
