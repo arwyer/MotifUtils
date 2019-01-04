@@ -69,6 +69,7 @@ class MotifUtils:
             MSO['Background'][letter] = 0.0
 
         MSU.parseMotifList(motifList,MSO)
+        MSU.CheckLength(MSO,params['min_len'],params['max_len'])
         for motif in MSO['Motifs']:
             for letter in MSO['Alphabet']:
                 if len(motif['PWM'][letter]) != len(motif['Iupac_sequence']):
@@ -129,6 +130,7 @@ class MotifUtils:
             MSO['Background'][letter] = 0.0
 
         MSU.parseMotifList(motifList,MSO)
+        MSU.CheckLength(MSO,params['min_len'],params['max_len'])
         if 'absolute_locations' in params:
             for motif in MSO['Motifs']:
                 for loc in motif['Motif_Locations']:
@@ -185,6 +187,7 @@ class MotifUtils:
             MSO['Background'][letter] = 0.0
 
         MSU.parseMotifList(motifList,MSO)
+        MSU.CheckLength(MSO,params['min_len'],params['max_len'])
         if 'absolute_locations' in params:
             for motif in MSO['Motifs']:
                 for loc in motif['Motif_Locations']:
