@@ -53,7 +53,7 @@ def ExtractSequence(start,end,orientation,id,SeqDict):
         newSeq = ''
         for b in tempseq:
             newSeq += complement[b]
-        newSeq = [::-1]
+        newSeq = newSeq[::-1]
         return newSeq
 
 
