@@ -43,6 +43,7 @@ def BuildSetDict():
         else:
             seqDict[id] = line.replace('\n','')
         count += 1
+    return seqDict
 
 def ExtractSequence(start,end,orientation,id,SeqDict):
     complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A','N':'N'}
