@@ -46,7 +46,7 @@ def BuildSetDict():
 
 def ExtractSequence(start,end,orientation,id,SeqDict):
     complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A','N':'N'}
-    if orientation = '+':
+    if orientation == '+':
         return SeqDict[id][start:end]
     else:
         tempseq = SeqDict[id][start:end]
