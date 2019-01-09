@@ -15,7 +15,6 @@ def GetBackground():
         count += 1
     total = FreqDict['A'] + FreqDict['C'] + FreqDict['G'] + FreqDict['T']
     Background = {}
-    if total == 0:
 
     Background['A'] = float(FreqDict['A'])/total
     Background['C'] = float(FreqDict['C'])/total
