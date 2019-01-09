@@ -6,6 +6,7 @@ def GetBackground():
     sfile = open(seqfile)
     FreqDict = {'A':0,'G':0,'C':0,'T':0}
     for line in sfile:
+        print(line)
         if count%2 == 1:
             FreqDict['A'] += line.count('A')
             FreqDict['C'] += line.count('C')
@@ -14,6 +15,8 @@ def GetBackground():
         count += 1
     total = FreqDict['A'] + FreqDict['C'] + FreqDict['G'] + FreqDict['T']
     Background = {}
+    if total == 0:
+
     Background['A'] = float(FreqDict['A'])/total
     Background['C'] = float(FreqDict['C'])/total
     Background['G'] = float(FreqDict['G'])/total
