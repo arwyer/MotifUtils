@@ -1,5 +1,5 @@
 [ {
-  "module_name" : "DataFileUtil",
+  "module_name" : "KBaseReport",
   "type" : "sdk",
   "version_tag" : "release"
 }, {
