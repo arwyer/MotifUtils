@@ -81,13 +81,19 @@ module MotifUtils {
     } MotifSet;
 
     typedef structure{
+        string report_name;
+        string report_ref;
+    } UIOutParams;
+
+    typedef structure{
         motif_format format;
         string path;
         string obj_name;
+        string ws_name;
     } uploadParams;
 
     funcdef uploadMotifSet(uploadParams params)
-      returns (string out) authentication required;
+      returns (UIOutParams out) authentication required;
 
     typedef structure{
         motif_format format;
@@ -109,13 +115,9 @@ module MotifUtils {
     typedef structure{
         motif_format format;
         MotifSetRef motifset;
+        string ws_name;
     } downloadParams;
 
-    typedef structure{
-        string report_name;
-        string report_ref;
-    } downloadOutParams;
-
     funcdef downloadMotifSet(downloadParams params)
-      returns (downloadOutParams out) authentication required;
+      returns (UIOutParams out) authentication required;
 };

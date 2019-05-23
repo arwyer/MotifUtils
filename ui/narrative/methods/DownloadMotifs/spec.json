@@ -72,10 +72,6 @@
                     "target_property": "format"
                 },
                 {
-                    "input_parameter": "obj_name",
-                    "target_property": "obj_name"
-                },
-                {
                     "input_parameter": "MotifSet Object",
                     "target_property": "motifset"
                 }

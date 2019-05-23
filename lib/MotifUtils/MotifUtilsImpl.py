@@ -24,7 +24,7 @@ class MotifUtils:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbasecollaborations/MotifUtils.git"
-    GIT_COMMIT_HASH = "f3809ae1146b19aac4445ec9eba7072944f66d4d"
+    GIT_COMMIT_HASH = "731605fcff3dda908ed7f427205c5b304e4f4214"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -46,8 +46,10 @@ class MotifUtils:
         :param params: instance of type "uploadParams" -> structure:
            parameter "format" of type "motif_format" (Input/Output motif
            format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")),
-           parameter "path" of String, parameter "obj_name" of String
-        :returns: instance of String
+           parameter "path" of String, parameter "obj_name" of String,
+           parameter "ws_name" of String
+        :returns: instance of type "UIOutParams" -> structure: parameter
+           "report_name" of String, parameter "report_ref" of String
         """
         # ctx is the context object
         # return variables are: out
@@ -55,9 +57,9 @@ class MotifUtils:
         #END uploadMotifSet
 
         # At some point might do deeper type checking...
-        if not isinstance(out, str):
+        if not isinstance(out, dict):
             raise ValueError('Method uploadMotifSet return value ' +
-                             'out is not type str as required.')
+                             'out is not type dict as required.')
         # return the results
         return [out]
 
@@ -133,9 +135,9 @@ class MotifUtils:
            parameter "format" of type "motif_format" (Input/Output motif
            format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")),
            parameter "motifset" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
-        :returns: instance of type "downloadOutParams" -> structure:
-           parameter "report_name" of String, parameter "report_ref" of String
+           @id ws KBaseGeneRegulation.MotifSet), parameter "ws_name" of String
+        :returns: instance of type "UIOutParams" -> structure: parameter
+           "report_name" of String, parameter "report_ref" of String
         """
         # ctx is the context object
         # return variables are: out
