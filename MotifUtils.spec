@@ -10,7 +10,7 @@ module MotifUtils {
     typedef string obj_ref;
 
     /* Input/Output motif format
-        @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")
+        @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", "MFMD")
     */
     typedef string motif_format;
 
@@ -89,7 +89,7 @@ module MotifUtils {
         motif_format format;
         string path;
         string obj_name;
-        string ws_name;
+        workspace_name ws_name;
     } uploadParams;
 
     funcdef uploadMotifSet(uploadParams params)
@@ -98,6 +98,7 @@ module MotifUtils {
     typedef structure{
         motif_format format;
         File file;
+        workspace_name ws_name;
     } parseParams;
 
     funcdef parseMotifSet(parseParams params)
@@ -107,6 +108,7 @@ module MotifUtils {
         motif_format format;
         File file;
         string obj_name;
+        workspace_name ws_name;
     } saveParams;
 
     funcdef saveMotifSet(saveParams params)
@@ -115,7 +117,7 @@ module MotifUtils {
     typedef structure{
         motif_format format;
         MotifSetRef motifset;
-        string ws_name;
+        workspace_name ws_name;
     } downloadParams;
 
     funcdef downloadMotifSet(downloadParams params)

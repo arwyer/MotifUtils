@@ -3,7 +3,11 @@
 import logging
 import os
 
+from .Utils.parse import MotifParser
+from .Utils.save import MotifSaver
+
 from installed_clients.KBaseReportClient import KBaseReport
+
 #END_HEADER
 
 
@@ -24,7 +28,7 @@ class MotifUtils:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbasecollaborations/MotifUtils.git"
-    GIT_COMMIT_HASH = "731605fcff3dda908ed7f427205c5b304e4f4214"
+    GIT_COMMIT_HASH = "92314795be254e3c92b31208e216c370b3a28b9d"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -37,6 +41,8 @@ class MotifUtils:
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
+        self.MotifParser = MotifParser(self.callback_url, self.shared_folder)
+        self.MotifSaver = MotifSaver(self.callback_url, self.shared_folder)
         #END_CONSTRUCTOR
         pass
 
@@ -45,9 +51,10 @@ class MotifUtils:
         """
         :param params: instance of type "uploadParams" -> structure:
            parameter "format" of type "motif_format" (Input/Output motif
-           format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")),
-           parameter "path" of String, parameter "obj_name" of String,
-           parameter "ws_name" of String
+           format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC",
+           "MFMD")), parameter "path" of String, parameter "obj_name" of
+           String, parameter "ws_name" of type "workspace_name" (workspace
+           name of the object)
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String
         """
@@ -67,9 +74,11 @@ class MotifUtils:
         """
         :param params: instance of type "parseParams" -> structure: parameter
            "format" of type "motif_format" (Input/Output motif format
-           @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")), parameter
-           "file" of type "File" -> structure: parameter "path" of String,
-           parameter "shock_id" of String, parameter "ftp_url" of String
+           @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", "MFMD")),
+           parameter "file" of type "File" -> structure: parameter "path" of
+           String, parameter "shock_id" of String, parameter "ftp_url" of
+           String, parameter "ws_name" of type "workspace_name" (workspace
+           name of the object)
         :returns: instance of type "MotifSet" (Condition - description of
            conditionused to select sequences SequenceSet_ref - reference to
            sequenceset used to find motifs Motifs - list of motifs Alphabet -
@@ -97,6 +106,9 @@ class MotifUtils:
         # ctx is the context object
         # return variables are: out
         #BEGIN parseMotifSet
+
+
+
         #END parseMotifSet
 
         # At some point might do deeper type checking...
@@ -110,16 +122,22 @@ class MotifUtils:
         """
         :param params: instance of type "saveParams" -> structure: parameter
            "format" of type "motif_format" (Input/Output motif format
-           @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")), parameter
-           "file" of type "File" -> structure: parameter "path" of String,
-           parameter "shock_id" of String, parameter "ftp_url" of String,
-           parameter "obj_name" of String
+           @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", "MFMD")),
+           parameter "file" of type "File" -> structure: parameter "path" of
+           String, parameter "shock_id" of String, parameter "ftp_url" of
+           String, parameter "obj_name" of String, parameter "ws_name" of
+           type "workspace_name" (workspace name of the object)
         :returns: instance of type "MotifSetRef" (Ref to a sequence set @id
            ws KBaseGeneRegulation.MotifSet)
         """
         # ctx is the context object
         # return variables are: out
         #BEGIN saveMotifSet
+
+        motifset = self.parseMotifSet(ctx, params)
+
+        out = self.MotifSaver.saveMotifSet(motifset, params)
+
         #END saveMotifSet
 
         # At some point might do deeper type checking...
@@ -133,9 +151,10 @@ class MotifUtils:
         """
         :param params: instance of type "downloadParams" -> structure:
            parameter "format" of type "motif_format" (Input/Output motif
-           format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC")),
-           parameter "motifset" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet), parameter "ws_name" of String
+           format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC",
+           "MFMD")), parameter "motifset" of type "MotifSetRef" (Ref to a
+           sequence set @id ws KBaseGeneRegulation.MotifSet), parameter
+           "ws_name" of type "workspace_name" (workspace name of the object)
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String
         """
