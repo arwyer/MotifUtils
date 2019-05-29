@@ -1,23 +1,15 @@
 # -*- coding: utf-8 -*-
 import unittest
-import os  # noqa: F401
-import json  # noqa: F401
+import os
 import time
-import requests
-
 from os import environ
-try:
-    from ConfigParser import ConfigParser  # py2
-except:
-    from configparser import ConfigParser  # py3
+from configparser import ConfigParser
 
-from pprint import pprint  # noqa: F401
-
-from DataFileUtil.DataFileUtilClient import DataFileUtil
 from biokbase.workspace.client import Workspace as workspaceService
 from MotifUtils.MotifUtilsImpl import MotifUtils
 from MotifUtils.MotifUtilsServer import MethodContext
 from MotifUtils.authclient import KBaseAuth as _KBaseAuth
+from installed_clients.DataFileUtilClient import DataFileUtil
 
 
 class MotifUtilsTest(unittest.TestCase):
@@ -51,6 +43,7 @@ class MotifUtilsTest(unittest.TestCase):
         cls.serviceImpl = MotifUtils(cls.cfg)
         cls.scratch = cls.cfg['scratch']
         cls.callback_url = os.environ['SDK_CALLBACK_URL']
+        cls.dfu = DataFileUtil(cls.callback_url)
 
     @classmethod
     def tearDownClass(cls):
@@ -87,17 +80,12 @@ class MotifUtilsTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        params = {}
-        params['local_path'] = '/kb/module/test/test_data/MEMEData.txt'
-        params['ws_name'] = self.getWsName()
-        params['format'] = 'MEME'
-        params['obj_name'] = 'TestObject'
-        dfu = DataFileUtil(self.callback_url)
-        #ret = self.getImpl().importFromNarrative(self.getContext(),params)[0]
-        #print(ret)
-        result = self.getImpl().importFromNarrative(self.getContext(),params)
-        get_objects_params = {}
-        get_objects_params['object_refs'] = [result[0]['obj_ref']]
-        MotifSet = dfu.get_objects(get_objects_params)['data'][0]['data']
+        file = {'path': '/kb/module/test/sample_data/meme/exmemeout.txt'}
+        params = {
+            'format': 'MEME',
+            'ws_name': self.getWsName(),
+            'file': file
+        }
 
-        pass
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+

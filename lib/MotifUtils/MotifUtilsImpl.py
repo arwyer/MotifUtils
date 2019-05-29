@@ -107,7 +107,7 @@ class MotifUtils:
         # return variables are: out
         #BEGIN parseMotifSet
 
-
+        out = self.MotifParser.parseMotif(params['file'], params['format'])
 
         #END parseMotifSet
 
