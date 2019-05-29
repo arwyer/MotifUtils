@@ -56,8 +56,10 @@ class MotifParser:
         formats = ["MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", "MFMD"]
 
         if motifformat in formats:
-            if motifformat == "MEME":
+            if motifformat.upper() == "MEME":
                 motifs = self.parseMEMEOutput(self.motif_file)
+            elif motifformat.upper() == "HOMER"
+                motifs = self.parseHOMEROutput(self.motif_file)
             else:
                 raise ValueError('Only MEME format is supported currently')
         else:
@@ -153,3 +155,43 @@ class MotifParser:
 
         return motifList
 
+    def parseHOMEROutput(self, motif_file):
+        homerFile = open(motif_file, 'r')
+        motifList, motifDict, pwmList = [], {}, []
+        for line in homerFile:
+            if '>' in line:
+                if len(motifDict) != 0:
+                    motifDict['pwm'] = pwmList
+                    pwmList = []
+                    motifDict['Locations'] = []
+                    motifList.append(motifDict)
+                    motifDict = {}
+                elems = line.split()
+                motif = elems[0].replace('>', '')
+                motifDict['Iupac_signature'] = motif
+                p_val = float(elems[5].split(',')[2].split(':')[1])
+                motifDict['p-value'] = p_val
+            else:
+                elems = line.split()
+                rowList = []
+                rowList.append(('A', float(elems[0])))
+                rowList.append(('C', float(elems[1])))
+                rowList.append(('G', float(elems[2])))
+                rowList.append(('T', float(elems[3])))
+                pwmList.append(rowList)
+
+        locationFile = open(locationFilePath, 'r')
+        for line in locationFile:
+            if len(line.split()) == 7:
+                elems = line.split()
+                motif = elems[0].split('-')[1]
+                for m in motifList:
+                    if m['Iupac_signature'] == motif:
+                        locList = []
+                        locList.append(elems[1])
+                        locList.append(elems[2])
+                        locList.append(elems[3])
+                        locList.append(elems[4])
+                        m['Locations'].append(locList)
+                        break
+        return motifList
