@@ -1,6 +1,4 @@
 test_local
 sdk.cfg
 lib/MotifUtils/MotifUtilsImpl.py.bak*
-lib.bak/*
-lib.bak
 oldMotifUtils.spec
