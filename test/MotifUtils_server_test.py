@@ -70,7 +70,8 @@ class MotifUtilsTest(unittest.TestCase):
         return self.__class__.ctx
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
-    def test_import_meme(self):
+    """
+    def test_parse_meme(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
         #                                  'objects': []})
@@ -83,6 +84,25 @@ class MotifUtilsTest(unittest.TestCase):
         file = {'path': '/kb/module/test/sample_data/meme/exmemeout.txt'}
         params = {
             'format': 'MEME',
+            'ws_name': self.getWsName(),
+            'file': file
+        }
+
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+    """
+    def test_parse_homer(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        file = {'path': '/kb/module/test/sample_data/homer'}
+        params = {
+            'format': 'HOMER',
             'ws_name': self.getWsName(),
             'file': file
         }
