@@ -145,6 +145,8 @@ class MotifUtils:
         save_objects_params['id'] = dfu.ws_name_to_id(params['ws_name'])
         save_objects_params['objects'] = [{'type': 'KBaseGeneRegulation.MotifSet' , 'data' : MSO , 'name' : params['obj_name']}]
 
+        exit(save_objects_params)
+
         info = dfu.save_objects(save_objects_params)[0]
         print('SAVED OBJECT')
         print(info)
