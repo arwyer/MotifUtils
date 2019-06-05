@@ -64,7 +64,7 @@ class MotifUtils:
         MSO['SequenceSet_ref'] = '123'
         MSO['Motifs'] = []
         MSO['Alphabet'] = ['A','C','G','T']
-        #MSO['Background'] = MSU.GetBackground()
+        MSO['Background'] = MSU.GetBackground()
         for letter in MSO['Alphabet']:
             MSO['Background'][letter] = 0.0
 
