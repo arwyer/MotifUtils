@@ -3,16 +3,38 @@ import os
 from pprint import pprint as pp
 from urllib import request, parse
 
+from .GibbsUtil import GibbsUtil as Gibbs
+from .HomerUtil import HomerUtils as Homer
+from .MemeUtil import MEMEUtil as MEME
+from .MFMDUtil import MFMDUtil as MFMD
+
 from installed_clients.DataFileUtilClient import DataFileUtil
 
 
 class MotifParser:
-    def __init__(self, callback, scratch):
-        self.scratch = scratch
-        self.dfu = DataFileUtil(callback)
+    def __init__(self, config):
+        self.scratch = config['scratch']
+        self.dfu = DataFileUtil(os.environ['SDK_CALLBACK_URL'])
+
+        self.Homer = Homer(config)
+        self.Gibbs = Gibbs(config)
+        self.MEME = MEME(config)
+        self.MFMD = MFMD(config)
 
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
+
+    def get_motif_format(self, format):
+        supported_formats = {
+            "MEME": self.MEME,
+            "JASPAR": None,
+            "GIBBS": self.Gibbs,
+            "HOMER": self.Homer,
+            "TRANSFAC": None,
+            "MFMD": self.MFMD,
+        }
+
+        return supported_formats[format]
 
     def parseMotif(self, file, motifformat):
         # remove empty keys from file
@@ -55,31 +77,15 @@ class MotifParser:
             else:
                 self.motif_file = file['path']
 
-        formats = ["MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", "MFMD"]
+        motifinfo = self.get_motif_format(motifformat)
 
-        if motifformat in formats:
-            if motifformat.upper() == "MEME":
-                motifs = self.parseMEMEOutput(self.motif_file)
-            elif motifformat.upper() == "HOMER":
-                motifs = self.parseHOMEROutput(self.motif_file)
-            else:
-                raise ValueError('Only MEME format is supported currently')
-        else:
-            raise ValueError('Motif format must be: "MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", or "MFMD"')
+        if motifinfo is None:
+            raise NotImplementedError(f'Motif format ({motifformat}) is not supported yet')
 
-        MSO = {}
-        MSO['Condition'] = 'Temp'
-        MSO['FeatureSet_ref'] = '123'
-        MSO['Motifs'] = motifs
-        MSO['Alphabet'] = ['A', 'C', 'G', 'T']
-        MSO['Background'] = {}
-
-        # TODO: implement background PWM
-        for letter in MSO['Alphabet']:
-            MSO['Background'][letter] = 0.0
+        MSO = motifinfo.parse(file)
 
         return MSO
-
+    """
     def parseMEMEOutput(self, path):
         outputFile = path
         file = open(outputFile, 'r')
@@ -334,3 +340,4 @@ class MotifParser:
                     before = -1
                     after = -1
         return motifList
+    """

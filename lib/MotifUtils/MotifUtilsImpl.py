@@ -5,8 +5,12 @@ import os
 
 from .Utils.parse import MotifParser
 from .Utils.save import MotifSaver
+from .Utils.GibbsUtil import GibbsUtil as Gibbs
+from .Utils.HomerUtil import HomerUtils as Homer
+from .Utils.MemeUtil import MEMEUtil as MEME
+from .Utils.MFMDUtil import MFMDUtil as MFMD
 
-from installed_clients.KBaseReportClient import KBaseReport
+from ..installed_clients.KBaseReportClient import KBaseReport
 
 #END_HEADER
 
@@ -41,10 +45,13 @@ class MotifUtils:
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
-        self.MotifParser = MotifParser(self.callback_url, self.shared_folder)
+
+        self.MotifParser = MotifParser(config)
         self.MotifSaver = MotifSaver(self.callback_url, self.shared_folder)
+
         #END_CONSTRUCTOR
         pass
+
 
 
     def uploadMotifSet(self, ctx, params):
@@ -61,6 +68,10 @@ class MotifUtils:
         # ctx is the context object
         # return variables are: out
         #BEGIN uploadMotifSet
+
+        # params['format'] is the motif upload format
+        motif_format = self.get_motif_format(params['format'])
+
         #END uploadMotifSet
 
         # At some point might do deeper type checking...
@@ -161,6 +172,8 @@ class MotifUtils:
         # ctx is the context object
         # return variables are: out
         #BEGIN downloadMotifSet
+
+
         #END downloadMotifSet
 
         # At some point might do deeper type checking...
