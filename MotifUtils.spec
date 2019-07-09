@@ -83,6 +83,7 @@ module MotifUtils {
     typedef structure{
         string report_name;
         string report_ref;
+        MotifSetRef motif_obj;
     } UIOutParams;
 
     typedef structure{
@@ -122,4 +123,32 @@ module MotifUtils {
 
     funcdef downloadMotifSet(downloadParams params)
       returns (UIOutParams out) authentication required;
+
+    /* Backwards compatability */
+    typedef structure{
+      string path;
+      string ws_name;
+      string obj_name;
+      mapping<string, string> absolute_locations;
+    } UploadMEMEInParams;
+
+    typedef structure{
+      string path;
+      string ws_name;
+      string obj_name;
+    } UploadGibbsInParams;
+
+    typedef structure{
+      string path;
+      string ws_name;
+      string obj_name;
+      string location_path;
+    } UploadHomerInParams;
+
+    funcdef UploadFromGibbs(UploadMEMEInParams params)
+      returns (UIOutParams output)  authentication required;
+    funcdef UploadFromHomer(UploadHomerInParams params)
+      returns (UIOutParams output)  authentication required;
+    funcdef UploadFromMEME(UploadGibbsInParams params)
+      returns (UIOutParams output)  authentication required;
 };

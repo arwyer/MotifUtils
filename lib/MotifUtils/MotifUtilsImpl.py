@@ -32,7 +32,7 @@ class MotifUtils:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbasecollaborations/MotifUtils.git"
-    GIT_COMMIT_HASH = "92314795be254e3c92b31208e216c370b3a28b9d"
+    GIT_COMMIT_HASH = "489d2589d8099c60838a8d6dd49c247144e1d0f7"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -52,7 +52,19 @@ class MotifUtils:
         #END_CONSTRUCTOR
         pass
 
+    #BEGIN get_motif_format
+    def get_motif_format(self, format):
+        supported_formats = {
+            "MEME": self.MEME,
+            "JASPAR": None,
+            "GIBBS": self.Gibbs,
+            "HOMER": self.Homer,
+            "TRANSFAC": None,
+            "MFMD": self.MFMD,
+        }
 
+        return supported_formats[format]
+    #END get_motif_format
 
     def uploadMotifSet(self, ctx, params):
         """
@@ -63,14 +75,18 @@ class MotifUtils:
            String, parameter "ws_name" of type "workspace_name" (workspace
            name of the object)
         :returns: instance of type "UIOutParams" -> structure: parameter
-           "report_name" of String, parameter "report_ref" of String
+           "report_name" of String, parameter "report_ref" of String,
+           parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
+           @id ws KBaseGeneRegulation.MotifSet)
         """
         # ctx is the context object
         # return variables are: out
         #BEGIN uploadMotifSet
 
         # params['format'] is the motif upload format
-        motif_format = self.get_motif_format(params['format'])
+
+        motifset = MotifParser.parseMotif(params)
+        out = MotifSaver.saveMotifSet(motifset)
 
         #END uploadMotifSet
 
@@ -118,7 +134,7 @@ class MotifUtils:
         # return variables are: out
         #BEGIN parseMotifSet
 
-        out = self.MotifParser.parseMotif(params['file'], params['format'])
+        out = self.MotifParser.parseMotif(params)
 
         #END parseMotifSet
 
@@ -167,7 +183,9 @@ class MotifUtils:
            sequence set @id ws KBaseGeneRegulation.MotifSet), parameter
            "ws_name" of type "workspace_name" (workspace name of the object)
         :returns: instance of type "UIOutParams" -> structure: parameter
-           "report_name" of String, parameter "report_ref" of String
+           "report_name" of String, parameter "report_ref" of String,
+           parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
+           @id ws KBaseGeneRegulation.MotifSet)
         """
         # ctx is the context object
         # return variables are: out
@@ -182,6 +200,89 @@ class MotifUtils:
                              'out is not type dict as required.')
         # return the results
         return [out]
+
+    def UploadFromGibbs(self, ctx, params):
+        """
+        :param params: instance of type "UploadMEMEInParams" (Backwards
+           compatability) -> structure: parameter "path" of String, parameter
+           "ws_name" of String, parameter "obj_name" of String, parameter
+           "absolute_locations" of mapping from String to String
+        :returns: instance of type "UIOutParams" -> structure: parameter
+           "report_name" of String, parameter "report_ref" of String,
+           parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
+           @id ws KBaseGeneRegulation.MotifSet)
+        """
+        # ctx is the context object
+        # return variables are: output
+        #BEGIN UploadFromGibbs
+
+        params['format'] = 'GIBBS'
+
+        output = self.uploadMotifSet(params)
+
+        #END UploadFromGibbs
+
+        # At some point might do deeper type checking...
+        if not isinstance(output, dict):
+            raise ValueError('Method UploadFromGibbs return value ' +
+                             'output is not type dict as required.')
+        # return the results
+        return [output]
+
+    def UploadFromHomer(self, ctx, params):
+        """
+        :param params: instance of type "UploadHomerInParams" -> structure:
+           parameter "path" of String, parameter "ws_name" of String,
+           parameter "obj_name" of String, parameter "location_path" of String
+        :returns: instance of type "UIOutParams" -> structure: parameter
+           "report_name" of String, parameter "report_ref" of String,
+           parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
+           @id ws KBaseGeneRegulation.MotifSet)
+        """
+        # ctx is the context object
+        # return variables are: output
+        #BEGIN UploadFromHomer
+
+        params['format'] = 'HOMER'
+
+        output = self.uploadMotifSet(params)
+
+        #END UploadFromHomer
+
+        # At some point might do deeper type checking...
+        if not isinstance(output, dict):
+            raise ValueError('Method UploadFromHomer return value ' +
+                             'output is not type dict as required.')
+        # return the results
+        return [output]
+
+    def UploadFromMEME(self, ctx, params):
+        """
+        :param params: instance of type "UploadGibbsInParams" -> structure:
+           parameter "path" of String, parameter "ws_name" of String,
+           parameter "obj_name" of String
+        :returns: instance of type "UIOutParams" -> structure: parameter
+           "report_name" of String, parameter "report_ref" of String,
+           parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
+           @id ws KBaseGeneRegulation.MotifSet)
+        """
+        # ctx is the context object
+        # return variables are: output
+        #BEGIN UploadFromMEME
+
+        params['format'] = 'MEME'
+
+        output = self.uploadMotifSet(params)
+
+        #END UploadFromMEME
+
+        # At some point might do deeper type checking...
+        if not isinstance(output, dict):
+            raise ValueError('Method UploadFromMEME return value ' +
+                             'output is not type dict as required.')
+        # return the results
+        return [output]
+
     def status(self, ctx):
         #BEGIN_STATUS
         returnVal = {'state': "OK",

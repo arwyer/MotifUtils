@@ -354,6 +354,18 @@ class Application(object):
                              name='MotifUtils.downloadMotifSet',
                              types=[dict])
         self.method_authentication['MotifUtils.downloadMotifSet'] = 'required'  # noqa
+        self.rpc_service.add(impl_MotifUtils.UploadFromGibbs,
+                             name='MotifUtils.UploadFromGibbs',
+                             types=[dict])
+        self.method_authentication['MotifUtils.UploadFromGibbs'] = 'required'  # noqa
+        self.rpc_service.add(impl_MotifUtils.UploadFromHomer,
+                             name='MotifUtils.UploadFromHomer',
+                             types=[dict])
+        self.method_authentication['MotifUtils.UploadFromHomer'] = 'required'  # noqa
+        self.rpc_service.add(impl_MotifUtils.UploadFromMEME,
+                             name='MotifUtils.UploadFromMEME',
+                             types=[dict])
+        self.method_authentication['MotifUtils.UploadFromMEME'] = 'required'  # noqa
         self.rpc_service.add(impl_MotifUtils.status,
                              name='MotifUtils.status',
                              types=[dict])
