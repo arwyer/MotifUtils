@@ -3,12 +3,16 @@ import os
 import json
 import subprocess
 
+from installed_clients.DataFileUtilClient import DataFileUtil
+
 
 class HomerUtils:
     def __init__(self, config):
         self.scratch = config['scratch']
         self.callback_url = os.environ['SDK_CALLBACK_URL']
         self.dfu = DataFileUtil(self.callback_url)
+
+    def parse_motif_list(self, motiflist):
 
     def parse(self, path,location):
         outputFilePath = path
@@ -53,4 +57,5 @@ class HomerUtils:
                         locList.append(elems[4])
                         m['Locations'].append(locList)
                         break
-        return motifList
+
+        return self.parse_motif_list(motifList)

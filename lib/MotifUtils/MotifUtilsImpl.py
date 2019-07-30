@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+l# -*- coding: utf-8 -*-
 #BEGIN_HEADER
 import logging
 import os
@@ -10,7 +10,7 @@ from .Utils.HomerUtil import HomerUtils as Homer
 from .Utils.MemeUtil import MEMEUtil as MEME
 from .Utils.MFMDUtil import MFMDUtil as MFMD
 
-from ..installed_clients.KBaseReportClient import KBaseReport
+from installed_clients.KBaseReportClient import KBaseReport
 
 #END_HEADER
 

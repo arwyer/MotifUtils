@@ -4,10 +4,9 @@ import json
 from Bio import motifs
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
-try:
-    from cStringIO import StringIO
-except ModuleNotFoundError:
-    from StringIO import StringIO
+from io import StringIO
+
+from installed_clients.DataFileUtilClient import DataFileUtil
 
 
 class GibbsUtil:
@@ -18,15 +17,9 @@ class GibbsUtil:
 
     def parse(self, path):
         outputFileList = []
-        #outputFileDir = '/kb/module/work/tmp'
-        #for i in range(motif_min_length,motif_max_length+1,2):
-            #outputFileList.append(outputFileDir + '/gibbs_output_' + str(i) + '.txt')
         for filename in os.listdir(path):
             outputFileList.append(path + '/' + filename)
 
-
-        #outputFileDir = '/Users/arw/identify_promoter/test_local/workdir/tmp'
-        #outputFilePath = outputFileDir + '/gibbs_output_' + str(motifLen) + '.txt'
         motifList = []
         for outputFilePath in outputFileList:
 
@@ -141,4 +134,4 @@ class GibbsUtil:
                     before = -1
                     after = -1
 
-        return motifList
+        return motifDict

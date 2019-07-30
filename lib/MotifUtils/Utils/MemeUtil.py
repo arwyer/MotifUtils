@@ -2,32 +2,73 @@ import sys
 import os
 import json
 import subprocess
+from copy import deepcopy
 
 
 class MEMEUtil:
     def __init__(self, config):
         self.scratch = config['scratch']
 
-    # build the command to run meme, use some default flags
-    def build_meme_command(self, inputFilePath):
-        outputFlag = ' -o /kb/module/work/tmp/meme_out -revcomp -dna'
-        command = '/kb/deployment/bin/meme/bin/meme ' + inputFilePath + outputFlag
+    def parse_motif_list(self, motiflist):
+        MSO = {}
+        MSO['Condition'] = 'Temp'
+        MSO['SequenceSet_ref'] = '123'
+        MSO['Motifs'] = []
+        MSO['Alphabet'] = ['A', 'C', 'G', 'T']
+        MSO['Background'] = {}
+        for letter in MSO['Alphabet']:
+            MSO['Background'][letter] = 0.0
 
-        return command
+        for motif in motiflist:
+            MSO['Motifs'].append(deepcopy(self.ConvertMotif(motif, MSO)))
 
-    # wrapper to subprocess run for now, error check later
-    def run_meme_command(self, command):
-        try:
-            meme_out_txt = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-            #print('************PRINTING MEME************\n'+meme_out_txt)
-            return meme_out_txt
-        except subprocess.CalledProcessError as e:
-            print('************MEME ERROR************\n')
-            print(e.returncode)
-            raise subprocess.CalledProcessError(e)
+    def ConvertMotif(self, motif, MotifSet):
+        newMotif = {}
+        newMotif['Motif_Locations'] = []
+        SeqDict = {}
+        for loc in motif['Locations']:
+            new_loc = {}
+            # new_loc['Feature_id'] = loc[0]
+            new_loc['sequence_id'] = loc[0]
+            new_loc['start'] = int(loc[1])
+            new_loc['end'] = int(loc[2])
+            new_loc['orientation'] = loc[3]
+            # new_loc['sequence'] = self.ExtractSequence(int(loc[1]), int(loc[2]), loc[3], loc[0], SeqDict)
+            new_loc['sequence'] = ''
+            newMotif['Motif_Locations'].append(new_loc.copy())
+        newMotif['Iupac_sequence'] = motif['Iupac_signature']
+        newMotif['PWM'] = {}
+        newMotif['PFM'] = {}
+
+        for letter in MotifSet['Alphabet']:
+            newMotif['PWM'][letter] = []
+            newMotif['PFM'][letter] = []
+        if len(motif['pwm']) != len(motif['Iupac_signature']):
+            print('LENGTH MISMATCH ORIGINAL')
+        for row in motif['pwm']:
+            for pair in row:
+                newMotif['PWM'][pair[0]].append(pair[1])
+        if len(newMotif['PWM']['A']) != len(newMotif['Iupac_sequence']):
+            print('LENGTH MISMATCH NEW')
+
+        return newMotif
+
+    def ExtractSequence(self, start, end, orientation, id, SeqDict):
+        complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A', 'N': 'N'}
+        if orientation == '+':
+            print(id)
+            print(SeqDict[id])
+            return SeqDict[id][start:end]
+        else:
+            tempseq = SeqDict[id][start:end]
+            newSeq = ''
+            for b in tempseq:
+                newSeq += complement[b]
+            newSeq = newSeq[::-1]
+            return newSeq
 
     # parse output into old motif format(maybe new format if thats useful?)
-    def parse_meme_output(self, outputFile):
+    def parse(self, outputFile):
         file = open(outputFile,'r')
 
         starCount = 0
@@ -104,4 +145,5 @@ class MEMEUtil:
                     rowList.append(('G',float(elems[2])))
                     rowList.append(('T',float(elems[3])))
                     motifDict['pwm'].append(rowList)
-        return motifList
+
+        return self.parse_motif_list(motifList)

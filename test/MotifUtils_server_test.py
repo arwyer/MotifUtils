@@ -2,6 +2,9 @@
 import unittest
 import os
 import time
+import uuid
+
+from pprint import pprint as pp
 from os import environ
 from configparser import ConfigParser
 
@@ -11,6 +14,7 @@ from MotifUtils.MotifUtilsServer import MethodContext
 from MotifUtils.authclient import KBaseAuth as _KBaseAuth
 from installed_clients.DataFileUtilClient import DataFileUtil
 
+from MotifUtils.Utils.save import MotifSaver
 
 class MotifUtilsTest(unittest.TestCase):
 
@@ -44,6 +48,7 @@ class MotifUtilsTest(unittest.TestCase):
         cls.scratch = cls.cfg['scratch']
         cls.callback_url = os.environ['SDK_CALLBACK_URL']
         cls.dfu = DataFileUtil(cls.callback_url)
+        cls.MotifSaver = MotifSaver(cls.callback_url, cls.scratch )
 
     @classmethod
     def tearDownClass(cls):
@@ -70,7 +75,6 @@ class MotifUtilsTest(unittest.TestCase):
         return self.__class__.ctx
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
-    """
     def test_parse_meme(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
@@ -89,6 +93,17 @@ class MotifUtilsTest(unittest.TestCase):
         }
 
         result = self.getImpl().parseMotifSet(self.getContext(), params)
+        exit(result)
+
+        # validate dfu type spec
+        resultobj = {
+                'type': 'KBaseGeneRegulation.MotifSet',
+                'data': result[0],
+                'name': str(uuid.uuid4())
+        }
+
+        print(self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]}))
+
     """
     def test_parse_homer(self):
         # Prepare test objects in workspace if needed using
@@ -109,3 +124,30 @@ class MotifUtilsTest(unittest.TestCase):
 
         result = self.getImpl().parseMotifSet(self.getContext(), params)
 
+        # validate dfu type spec
+        saveparams = {'ws_name': self.getWsName()}
+        self.MotifSaver.saveMotifSet(result, saveparams)
+
+    def test_parse_gibbs(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        file = {'path': '/kb/module/test/sample_data/gibbs'}
+        params = {
+            'format': 'GIBBS',
+            'ws_name': self.getWsName(),
+            'file': file
+        }
+
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+
+        # validate dfu type spec
+        saveparams = {'ws_name': self.getWsName()}
+        self.MotifSaver.saveMotifSet(result, saveparams)
+    """

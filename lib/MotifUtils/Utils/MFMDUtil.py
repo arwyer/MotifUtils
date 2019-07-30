@@ -2,6 +2,7 @@ import os
 import re
 from Bio import motifs
 from io import StringIO
+
 from installed_clients.DataFileUtilClient import DataFileUtil
 
 
