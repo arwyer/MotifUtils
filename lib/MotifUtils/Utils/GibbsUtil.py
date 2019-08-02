@@ -16,6 +16,10 @@ class GibbsUtil:
         self.dfu = DataFileUtil(self.callback_url)
 
     def parse(self, path):
+        if not os.path.isdir(path):
+            raise ValueError(f'Please pass a directory to the gibbs parser in Motif Utils. \n'
+                             f'A file was passed: {path}')
+
         outputFileList = []
         for filename in os.listdir(path):
             outputFileList.append(path + '/' + filename)

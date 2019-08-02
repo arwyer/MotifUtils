@@ -205,18 +205,17 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromGibbs
 
-        params['format'] = 'GIBBS'
+        print('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+              'unable to provide motif sequence information and has been deprecated.\n'
+              'Please use parseMotifSet with the parameters:\n'
+              'format = MEME or Homer or Gibbs or other\n'
+              'ws_name = workspace name\n'
+              'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
+              'genome_ref = kbase reference to genome reference')
 
-        output = self.uploadMotifSet(params)
+        raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         #END UploadFromGibbs
-
-        # At some point might do deeper type checking...
-        if not isinstance(output, dict):
-            raise ValueError('Method UploadFromGibbs return value ' +
-                             'output is not type dict as required.')
-        # return the results
-        return [output]
 
     def UploadFromHomer(self, ctx, params):
         """
@@ -233,18 +232,17 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromHomer
 
-        params['format'] = 'HOMER'
+        print('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+              'unable to provide motif sequence information and has been deprecated.\n'
+              'Please use parseMotifSet with the parameters:\n'
+              'format = MEME or Homer or Gibbs or other\n'
+              'ws_name = workspace name\n'
+              'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
+              'genome_ref = kbase reference to genome reference')
 
-        output = self.uploadMotifSet(params)
+        raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         #END UploadFromHomer
-
-        # At some point might do deeper type checking...
-        if not isinstance(output, dict):
-            raise ValueError('Method UploadFromHomer return value ' +
-                             'output is not type dict as required.')
-        # return the results
-        return [output]
 
     def UploadFromMEME(self, ctx, params):
         """

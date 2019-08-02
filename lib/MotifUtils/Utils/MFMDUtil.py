@@ -3,16 +3,13 @@ import re
 from Bio import motifs
 from io import StringIO
 
-from installed_clients.DataFileUtilClient import DataFileUtil
-
 
 class MFMDUtil:
     def __init__(self, config):
         self.scratch = config['scratch']
         self.callback_url = os.environ['SDK_CALLBACK_URL']
-        self.dfu = DataFileUtil(self.callback_url)
 
-    def parse(self, path):
+    def parse(self, path, params):
         pfmList = []
         pfmDict={}
         outputFileList = []
