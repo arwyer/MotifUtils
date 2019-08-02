@@ -124,7 +124,6 @@ class MotifUtils:
 
         out = self.MotifParser.parseMotif(params)
         #END parseMotifSet
-
         # At some point might do deeper type checking...
         if not isinstance(out, dict):
             raise ValueError('Method parseMotifSet return value ' +
