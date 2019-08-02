@@ -1,4 +1,4 @@
-l# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #BEGIN_HEADER
 import logging
 import os
@@ -32,7 +32,7 @@ class MotifUtils:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbasecollaborations/MotifUtils.git"
-    GIT_COMMIT_HASH = "489d2589d8099c60838a8d6dd49c247144e1d0f7"
+    GIT_COMMIT_HASH = "0dcdd4deace5ad61f0c5f252f778593041f39399"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -52,19 +52,6 @@ class MotifUtils:
         #END_CONSTRUCTOR
         pass
 
-    #BEGIN get_motif_format
-    def get_motif_format(self, format):
-        supported_formats = {
-            "MEME": self.MEME,
-            "JASPAR": None,
-            "GIBBS": self.Gibbs,
-            "HOMER": self.Homer,
-            "TRANSFAC": None,
-            "MFMD": self.MFMD,
-        }
-
-        return supported_formats[format]
-    #END get_motif_format
 
     def uploadMotifSet(self, ctx, params):
         """
@@ -77,7 +64,8 @@ class MotifUtils:
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String,
            parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
+           @id ws KBaseGeneRegulation.MotifSet), parameter "genome" of type
+           "GenomeRef" (Ref to a sequence set @id ws KBaseGenomes.Genome)
         """
         # ctx is the context object
         # return variables are: out
@@ -135,7 +123,6 @@ class MotifUtils:
         #BEGIN parseMotifSet
 
         out = self.MotifParser.parseMotif(params)
-
         #END parseMotifSet
 
         # At some point might do deeper type checking...
@@ -185,7 +172,8 @@ class MotifUtils:
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String,
            parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
+           @id ws KBaseGeneRegulation.MotifSet), parameter "genome" of type
+           "GenomeRef" (Ref to a sequence set @id ws KBaseGenomes.Genome)
         """
         # ctx is the context object
         # return variables are: out
@@ -210,7 +198,8 @@ class MotifUtils:
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String,
            parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
+           @id ws KBaseGeneRegulation.MotifSet), parameter "genome" of type
+           "GenomeRef" (Ref to a sequence set @id ws KBaseGenomes.Genome)
         """
         # ctx is the context object
         # return variables are: output
@@ -237,7 +226,8 @@ class MotifUtils:
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String,
            parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
+           @id ws KBaseGeneRegulation.MotifSet), parameter "genome" of type
+           "GenomeRef" (Ref to a sequence set @id ws KBaseGenomes.Genome)
         """
         # ctx is the context object
         # return variables are: output
@@ -264,24 +254,24 @@ class MotifUtils:
         :returns: instance of type "UIOutParams" -> structure: parameter
            "report_name" of String, parameter "report_ref" of String,
            parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
+           @id ws KBaseGeneRegulation.MotifSet), parameter "genome" of type
+           "GenomeRef" (Ref to a sequence set @id ws KBaseGenomes.Genome)
         """
         # ctx is the context object
         # return variables are: output
         #BEGIN UploadFromMEME
 
-        params['format'] = 'MEME'
+        print('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+              'unable to provide motif sequence information and has been deprecated.\n'
+              'Please use parseMotifSet with the parameters:\n'
+              'format = MEME or Homer or Gibbs\n'
+              'ws_name = workspace name\n'
+              'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
+              'genome_ref = kbase reference to genome reference')
 
-        output = self.uploadMotifSet(params)
+        raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
-        #END UploadFromMEME
-
-        # At some point might do deeper type checking...
-        if not isinstance(output, dict):
-            raise ValueError('Method UploadFromMEME return value ' +
-                             'output is not type dict as required.')
-        # return the results
-        return [output]
+        # END UploadFromMEME
 
     def status(self, ctx):
         #BEGIN_STATUS

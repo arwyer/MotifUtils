@@ -19,6 +19,11 @@ module MotifUtils {
     */
     typedef string MotifSetRef;
 
+    /* Ref to a sequence set
+        @id ws KBaseGenomes.Genome
+    */
+    typedef string GenomeRef;
+
     typedef structure {
         string path;
         string shock_id;
@@ -100,6 +105,7 @@ module MotifUtils {
         motif_format format;
         File file;
         workspace_name ws_name;
+        GenomeRef genome;
     } parseParams;
 
     funcdef parseMotifSet(parseParams params)

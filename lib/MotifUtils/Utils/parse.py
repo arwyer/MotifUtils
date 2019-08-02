@@ -24,35 +24,6 @@ class MotifParser:
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
 
-    def get_background(self, seqfile):
-        """
-        count = 0
-        sfile = open(seqfile)
-        FreqDict = {'A': 0, 'G': 0, 'C': 0, 'T': 0}
-        for line in sfile:
-            print(line)
-            if count % 2 == 1:
-                FreqDict['A'] += line.count('A')
-                FreqDict['C'] += line.count('C')
-                FreqDict['G'] += line.count('G')
-                FreqDict['T'] += line.count('T')
-            count += 1
-        total = FreqDict['A'] + FreqDict['C'] + FreqDict['G'] + FreqDict['T']
-        """
-        Background = {}
-
-        # Background['A'] = float(FreqDict['A']) / total
-        # Background['C'] = float(FreqDict['C']) / total
-        # Background['G'] = float(FreqDict['G']) / total
-        # Background['T'] = float(FreqDict['T']) / total
-
-        Background['A'] = 0.0
-        Background['C'] = 0.0
-        Background['G'] = 0.0
-        Background['T'] = 0.0
-
-        return Background
-
     def get_motif_format(self, format):
         supported_formats = {
             "MEME": self.MEME,
@@ -113,16 +84,4 @@ class MotifParser:
         if motifinfo is None:
             raise NotImplementedError(f'Motif format ({motifformat}) is not supported yet')
 
-        MSO = {}
-
-        alphabet = ['A', 'C', 'G', 'T']
-
-        MSO['Condition'] = 'Temp'
-        MSO['SequenceSet_ref'] = '123'
-        MSO['Motifs'] = []
-        MSO['Alphabet'] = alphabet
-        MSO['Background'] = self.get_background(self.motif_file)
-
-        MSO = motifinfo.parse(self.motif_file)
-
-        return MSO
+        return motifinfo.parse(self.motif_file, params)

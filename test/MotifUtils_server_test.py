@@ -75,6 +75,7 @@ class MotifUtilsTest(unittest.TestCase):
         return self.__class__.ctx
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
+
     def test_parse_meme(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
@@ -85,15 +86,15 @@ class MotifUtilsTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        file = {'path': '/kb/module/test/sample_data/meme/exmemeout.txt'}
+        file = {'path': '/kb/module/test/sample_data/meme/meme.txt'}
         params = {
             'format': 'MEME',
-            'ws_name': self.getWsName(),
-            'file': file
+            'ws_name': 'rmr:narrative_1558461244202',
+            'file': file,
+            'genome_ref': '28598/18/1'
         }
 
         result = self.getImpl().parseMotifSet(self.getContext(), params)
-        exit(result)
 
         # validate dfu type spec
         resultobj = {
@@ -103,8 +104,8 @@ class MotifUtilsTest(unittest.TestCase):
         }
 
         print(self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]}))
-
     """
+
     def test_parse_homer(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
@@ -123,10 +124,7 @@ class MotifUtilsTest(unittest.TestCase):
         }
 
         result = self.getImpl().parseMotifSet(self.getContext(), params)
-
-        # validate dfu type spec
-        saveparams = {'ws_name': self.getWsName()}
-        self.MotifSaver.saveMotifSet(result, saveparams)
+        exit(result)
 
     def test_parse_gibbs(self):
         # Prepare test objects in workspace if needed using

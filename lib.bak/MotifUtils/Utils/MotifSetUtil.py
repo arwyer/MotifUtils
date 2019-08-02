@@ -20,9 +20,10 @@ def GetBackground():
     Background['C'] = float(FreqDict['C'])/total
     Background['G'] = float(FreqDict['G'])/total
     Background['T'] = float(FreqDict['T'])/total
+
     return Background
 
-def CheckLength(motifset,min,max):
+def CheckLength(motifset, min, max):
     topop = []
     for i,motif in enumerate(motifset['Motifs']):
         if len(motif['Iupac_sequence']) < min or len(motif['Iupac_sequence']) > max:
