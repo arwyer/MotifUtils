@@ -1,0 +1,16 @@
+{
+   "name" : "saveMotifSet",
+   "short_description" : "Save a motif set dictionary a narrative",
+   "long_description" : "This function takes a dictionary established to type KBaseGeneRegulation.MotifSet and returns the object reference",
+   "tags" : {
+     "categories" : [],
+     "input": {
+       "file_types": [],
+       "kb_types": []
+     },
+     "output": {
+       "file_types": [],
+       "kb_types": ["KBaseGeneRegulation.MotifSet"]
+     }
+   }
+}

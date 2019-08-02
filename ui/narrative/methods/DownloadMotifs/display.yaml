@@ -1,0 +1,44 @@
+#
+# define display information
+#
+name: Download Motifs
+
+tooltip: |
+    Upload formatted Motif files into KBase objects
+
+screenshots: []
+
+icon: icon.png
+
+#
+# define a set of similar methods that might be useful to the user
+#
+suggestions:
+    apps:
+        related:
+            []
+        next:
+            []
+    methods:
+        related:
+            []
+        next:
+            []
+
+#
+# Configure the display and description of parameters
+#
+parameters :
+    format :
+        ui-name : |
+            Format
+        short-hint : |
+            Format of motif file
+    MotifSet Object :
+        ui-name : |
+            MotifSet Object
+        short-hint : |
+            KBase object to convert to a particular motif format and download
+
+description : |
+    <p> This is the narrative interface for the MotifUtils uploader. With this application users can upload motifs from a variety of commonly supported formats such as MEME, JASPAR, and TRANSFAC. Currently MEME is the only format supported.</p>

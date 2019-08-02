@@ -1,0 +1,16 @@
+{
+   "name" : "parseMotifSet",
+   "short_description" : "Parse the output of a supported motif finding application into a KBaseGeneRegulation.MotifSet dictionary",
+   "long_description" : "This function parses the output text files from motif finder applications and returns a constructured dictionary element to type KBaseGeneRegulation.MotifSet",
+   "tags" : {
+     "categories" : [],
+     "input": {
+       "file_types": ["txt"],
+       "kb_types": []
+     },
+     "output": {
+       "file_types": [],
+       "kb_types": []
+     }
+   }
+}
