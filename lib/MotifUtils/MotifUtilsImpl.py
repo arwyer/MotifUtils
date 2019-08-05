@@ -215,6 +215,7 @@ class MotifUtils:
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         #END UploadFromGibbs
+        return {}
 
     def UploadFromHomer(self, ctx, params):
         """
@@ -242,6 +243,7 @@ class MotifUtils:
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         #END UploadFromHomer
+        return {}
 
     def UploadFromMEME(self, ctx, params):
         """
@@ -269,6 +271,7 @@ class MotifUtils:
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         # END UploadFromMEME
+        return {}
 
     def status(self, ctx):
         #BEGIN_STATUS
