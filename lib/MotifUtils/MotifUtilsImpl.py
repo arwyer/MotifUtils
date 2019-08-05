@@ -205,27 +205,26 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromGibbs
 
-        print('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
-              'unable to provide motif sequence information and has been deprecated.\n'
-              'Please use parseMotifSet with the parameters:\n'
-              'format = MEME or Homer or Gibbs or other\n'
-              'ws_name = workspace name\n'
-              'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
-              'genome_ref = kbase reference to genome reference')
+        logging.error('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+                      'unable to provide motif sequence information and has been deprecated.\n'
+                      'Please use parseMotifSet with the parameters:\n'
+                      'format = MEME or Homer or Gibbs or other\n'
+                      'ws_name = workspace name\n'
+                      'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
+                      'genome_ref = kbase reference to genome reference')
 
-        raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
-        out = { }
-
-        #END UploadFromGibbs
+        raise ValueError('Deprecated method function UploadFromGibbs, use parseMotifSet or saveMotifSet')
+        exit('Deprecated method function UploadFromGibbs, use parseMotifSet or saveMotifSet')
         out = {}
 
-         #END downloadMotifSet
-         # At some point might do deeper type checking...
-         if not isinstance(out, dict):
-             raise ValueError('Method downloadMotifSet return value ' +
+        #END UploadFromGibbs
+
+        # At some point might do deeper type checking...
+        if not isinstance(out, dict):
+            raise ValueError('Method downloadMotifSet return value ' +
                               'out is not type dict as required.')
-         # return the results
-         return [out]
+        # return the results
+        return [out]
 
     def UploadFromHomer(self, ctx, params):
         """
@@ -242,15 +241,16 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromHomer
 
-        print('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
-              'unable to provide motif sequence information and has been deprecated.\n'
-              'Please use parseMotifSet with the parameters:\n'
-              'format = MEME or Homer or Gibbs or other\n'
-              'ws_name = workspace name\n'
-              'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
-              'genome_ref = kbase reference to genome reference')
+        logging.error('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+                      'unable to provide motif sequence information and has been deprecated.\n'
+                      'Please use parseMotifSet with the parameters:\n'
+                      'format = MEME or Homer or Gibbs or other\n'
+                      'ws_name = workspace name\n'
+                      'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
+                      'genome_ref = kbase reference to genome reference')
 
-        raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
+        raise ValueError('Deprecated method function UploadFromHomer, use parseMotifSet or saveMotifSet')
+        exit('Deprecated method function UploadFromHomer, use parseMotifSet or saveMotifSet')
 
         #END UploadFromHomer
         out = {}
@@ -277,18 +277,19 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromMEME
 
-        print('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
-              'unable to provide motif sequence information and has been deprecated.\n'
-              'Please use parseMotifSet with the parameters:\n'
-              'format = MEME or Homer or Gibbs\n'
-              'ws_name = workspace name\n'
-              'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
-              'genome_ref = kbase reference to genome reference')
+        logging.error('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+                      'unable to provide motif sequence information and has been deprecated.\n'
+                      'Please use parseMotifSet with the parameters:\n'
+                      'format = MEME or Homer or Gibbs or other\n'
+                      'ws_name = workspace name\n'
+                      'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
+                      'genome_ref = kbase reference to genome reference')
 
-        raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
+        raise ValueError('Deprecated method function UploadFromGibbs, use parseMotifSet or saveMotifSet')
+        exit('Deprecated method function UploadFromGibbs, use parseMotifSet or saveMotifSet')
+        out = {}
 
         # END UploadFromMEME
-        out = {}
 
         # At some point might do deeper type checking...
         if not isinstance(out, dict):
