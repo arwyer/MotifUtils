@@ -280,7 +280,6 @@ class MotifUtils:
             'genome_ref = kbase reference to genome reference')
 
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
-        exit('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         #END UploadFromMEME
 

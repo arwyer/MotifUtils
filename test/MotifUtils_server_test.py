@@ -196,9 +196,9 @@ class MotifUtilsTest(unittest.TestCase):
 
         obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
         self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
-    """
+    
 
-    def test_parse_gibbs(self):
+    def test_parse_mfmd(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
         #                                  'objects': []})
@@ -227,3 +227,16 @@ class MotifUtilsTest(unittest.TestCase):
 
         obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
         self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
+    """
+
+    def test_parse_old_meme(self):
+        file = {'path': '/kb/module/test/sample_data/mfmd'}
+        params = {
+            'path': '/kb/module/test/sample_data/meme/meme.txt',
+            'ws_name': self.getWsName(),
+            'obj_name': 'test_obj',
+            'absolute_locations': ('test', 'test')
+        }
+
+        with self.assertRaises(ValueError):
+            result = self.getImpl().UploadFromMEME(self.getContext(), params)
