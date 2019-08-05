@@ -214,9 +214,18 @@ class MotifUtils:
               'genome_ref = kbase reference to genome reference')
 
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
+        out = { }
 
         #END UploadFromGibbs
-        return [{}]
+        out = {}
+
+         #END downloadMotifSet
+         # At some point might do deeper type checking...
+         if not isinstance(out, dict):
+             raise ValueError('Method downloadMotifSet return value ' +
+                              'out is not type dict as required.')
+         # return the results
+         return [out]
 
     def UploadFromHomer(self, ctx, params):
         """
@@ -244,7 +253,14 @@ class MotifUtils:
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         #END UploadFromHomer
-        return [{}]
+        out = {}
+
+        # At some point might do deeper type checking...
+        if not isinstance(out, dict):
+            raise ValueError('Method downloadMotifSet return value ' +
+                              'out is not type dict as required.')
+        # return the results
+        return [out]
 
     def UploadFromMEME(self, ctx, params):
         """
@@ -272,7 +288,14 @@ class MotifUtils:
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
         # END UploadFromMEME
-        return [{}]
+        out = {}
+
+        # At some point might do deeper type checking...
+        if not isinstance(out, dict):
+            raise ValueError('Method downloadMotifSet return value ' +
+                              'out is not type dict as required.')
+        # return the results
+        return [out]
 
     def status(self, ctx):
         #BEGIN_STATUS
