@@ -76,7 +76,6 @@ class MotifUtilsTest(unittest.TestCase):
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
 
-    """
     def test_parse_meme(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
@@ -227,7 +226,6 @@ class MotifUtilsTest(unittest.TestCase):
 
         obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
         self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
-    """
 
     def test_parse_old_meme(self):
         file = {'path': '/kb/module/test/sample_data/mfmd'}
@@ -240,3 +238,25 @@ class MotifUtilsTest(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             result = self.getImpl().UploadFromMEME(self.getContext(), params)
+
+    def test_parse_old_homer(self):
+        params = {
+            'path': '/kb/module/test/sample_data/homer',
+            'ws_name': self.getWsName(),
+            'obj_name': 'test_obj',
+            'absolute_locations': ('test', 'test')
+        }
+
+        with self.assertRaises(ValueError):
+            result = self.getImpl().UploadFromHomer(self.getContext(), params)
+
+    def test_parse_old_gibbs(self):
+        params = {
+            'path': '/kb/module/test/sample_data/gibbs',
+            'ws_name': self.getWsName(),
+            'obj_name': 'test_obj',
+            'absolute_locations': ('test', 'test')
+        }
+
+        with self.assertRaises(ValueError):
+            result = self.getImpl().UploadFromGibbs(self.getContext(), params)

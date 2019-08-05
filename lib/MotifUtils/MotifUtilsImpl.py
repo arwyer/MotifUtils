@@ -202,17 +202,17 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromGibbs
 
-        logging.error('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
-                      'unable to provide motif sequence information and has been deprecated.\n'
-                      'Please use parseMotifSet with the parameters:\n'
-                      'format = MEME or Homer or Gibbs or other\n'
-                      'ws_name = workspace name\n'
-                      'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
-                      'genome_ref = kbase reference to genome reference')
+        logging.error(
+            'This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+            'unable to provide motif sequence information and has been deprecated.\n'
+            'Please use parseMotifSet with the parameters:\n'
+            'format = MEME or Homer or Gibbs or other\n'
+            'ws_name = workspace name\n'
+            'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\'\n'
+            'genome_ref = kbase reference to genome reference\n'
+            'Please the spec file for more details.')
 
         raise ValueError('Deprecated method function UploadFromGibbs, use parseMotifSet or saveMotifSet')
-        exit('Deprecated method function UploadFromGibbs, use parseMotifSet or saveMotifSet')
-        output = {}
 
         #END UploadFromGibbs
 
@@ -237,16 +237,17 @@ class MotifUtils:
         # return variables are: output
         #BEGIN UploadFromHomer
 
-        logging.error('This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
-                      'unable to provide motif sequence information and has been deprecated.\n'
-                      'Please use parseMotifSet with the parameters:\n'
-                      'format = MEME or Homer or Gibbs or other\n'
-                      'ws_name = workspace name\n'
-                      'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
-                      'genome_ref = kbase reference to genome reference')
+        logging.error(
+            'This old call to MotifUtils is deprecated. It does not account for a sequence object and therefore is\n'
+            'unable to provide motif sequence information and has been deprecated.\n'
+            'Please use parseMotifSet with the parameters:\n'
+            'format = MEME or Homer or Gibbs or other\n'
+            'ws_name = workspace name\n'
+            'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\'\n'
+            'genome_ref = kbase reference to genome reference\n'
+            'Please the spec file for more details.')
 
         raise ValueError('Deprecated method function UploadFromHomer, use parseMotifSet or saveMotifSet')
-        exit('Deprecated method function UploadFromHomer, use parseMotifSet or saveMotifSet')
 
         #END UploadFromHomer
 
@@ -276,8 +277,9 @@ class MotifUtils:
             'Please use parseMotifSet with the parameters:\n'
             'format = MEME or Homer or Gibbs or other\n'
             'ws_name = workspace name\n'
-            'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\''
-            'genome_ref = kbase reference to genome reference')
+            'file = dictionary of \'shock_id\' \'ftp_url\' or \'path\'\n'
+            'genome_ref = kbase reference to genome reference\n'
+            'Please the spec file for more details.')
 
         raise ValueError('Deprecated method function UploadFromMEME, use parseMotifSet or saveMotifSet')
 
