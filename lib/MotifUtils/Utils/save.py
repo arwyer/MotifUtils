@@ -13,6 +13,8 @@ class MotifSaver:
                             level=logging.INFO)
 
     def saveMotifSet(self, motifset, params):
+        pp(params)
+        exit(self.dfu.ws_name_to_id(params['ws_name']))
         if isinstance(motifset, list):
             logging.info('Saving multiple motifset objects...')
             # TODO: accept lists of constructed motif set object
