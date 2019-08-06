@@ -152,6 +152,7 @@ class MotifUtils:
         #BEGIN saveMotifSet
 
         motifset = self.parseMotifSet(ctx, params)
+        exit(motifset)
 
         out = self.MotifSaver.saveMotifSet(motifset, params)
 
