@@ -13,6 +13,7 @@ class MotifSaver:
                             level=logging.INFO)
 
     def saveMotifSet(self, motifset, params):
+        exit(params)
 
         if isinstance(motifset, list):
             logging.info('Saving multiple motifset objects...')
