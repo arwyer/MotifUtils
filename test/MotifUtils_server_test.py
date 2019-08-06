@@ -91,7 +91,8 @@ class MotifUtilsTest(unittest.TestCase):
             'format': 'MEME',
             'ws_name': 'rmr:narrative_1558461244202',
             'file': file,
-            'genome_ref': '28598/18/1'
+            'genome_ref': '28598/18/1',
+            'seq_set_ref': '28598/21/1'
         }
 
         result = self.getImpl().parseMotifSet(self.getContext(), params)
@@ -106,6 +107,7 @@ class MotifUtilsTest(unittest.TestCase):
         obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
         self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
 
+    """
     def test_parse_homer(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
@@ -260,3 +262,4 @@ class MotifUtilsTest(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             result = self.getImpl().UploadFromGibbs(self.getContext(), params)
+    """

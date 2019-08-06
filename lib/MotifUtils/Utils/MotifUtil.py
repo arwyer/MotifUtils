@@ -1,26 +1,41 @@
 from copy import deepcopy
 import os
 from installed_clients.GenomeFileUtilClient import GenomeFileUtil
+from installed_clients.DataFileUtilClient import DataFileUtil
+from installed_clients.SequenceSetUtilsClient import SequenceSetUtils
 
 
 class MotifUtil:
     def __init__(self, config):
         self.scratch = config['scratch']
         self.GFU = GenomeFileUtil(os.environ['SDK_CALLBACK_URL'])
+        self.DFU = DataFileUtil(os.environ['SDK_CALLBACK_URL'])
+        self.SSU = SequenceSetUtils(os.environ['SDK_CALLBACK_URL'])
+
+    def build_sequence_fasta(self, params):
+        self.seq_file = self.SSU.SeqSetToFasta({
+            'ws_name': params['ws_name'],
+            'SS_ref': params['seq_set_ref']
+        })['path']
+
+        if not os.path.exists(self.seq_file):
+            raise FileNotFoundError(f'Sequence file: {self.seq_file} does not exist')
+
+        return True
 
     def parse_motif_list(self, motiflist, params):
+        self.build_sequence_fasta(params)
         MSO = {}
 
-        self.seq_file = self.GFU.genome_features_to_fasta({'genome_ref': params['genome_ref']})['file_path']
         MSO['Background'] = self.GetBackground(self.seq_file)
 
         MSO['Condition'] = 'Temp'
-        MSO['SequenceSet_ref'] = '123'
+        MSO['SequenceSet_ref'] = params['seq_set_ref']
         MSO['Motifs'] = []
         MSO['Alphabet'] = ['A', 'C', 'G', 'T']
 
         for motif in motiflist:
-            MSO['Motifs'].append(deepcopy(self.ConvertMotif(motif, MSO)))
+            MSO['Motifs'].append(deepcopy(self.ConvertMotif(motif, MSO, self.seq_file)))
 
         return MSO
 
@@ -29,7 +44,7 @@ class MotifUtil:
         sfile = open(seqfile)
         FreqDict = {'A': 0, 'G': 0, 'C': 0, 'T': 0}
         for line in sfile:
-            if count % 2 == 1:
+            if '> ' not in line and line != '\n':
                 FreqDict['A'] += line.count('A')
                 FreqDict['C'] += line.count('C')
                 FreqDict['G'] += line.count('G')
@@ -46,22 +61,22 @@ class MotifUtil:
         return Background
 
     def BuildSetDict(self, seqfile):
-        count = 0
         sfile = open(seqfile)
         seqDict = {}
         id = ''
         for line in sfile:
-            if count % 2 == 0:
-                id = line.replace('\n', '').replace('>', '')
+            if '> ' in line:
+                id = line.replace('\n', '').replace('>', '').strip()
+            elif line == '\n':
+                pass
             else:
                 seqDict[id] = line.replace('\n', '')
-            count += 1
         return seqDict
 
-    def ConvertMotif(self, motif, MotifSet):
+    def ConvertMotif(self, motif, MotifSet, seqfile):
         newMotif = {}
         newMotif['Motif_Locations'] = []
-        SeqDict = self.BuildSetDict(self.seq_file)
+        SeqDict = self.BuildSetDict(seqfile)
         for loc in motif['Locations']:
             new_loc = {}
             # new_loc['Feature_id'] = loc[0]

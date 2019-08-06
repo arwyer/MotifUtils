@@ -32,7 +32,7 @@ class MotifUtils:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbasecollaborations/MotifUtils.git"
-    GIT_COMMIT_HASH = "733ce89cafbfa8ef72ca426639348ce19e1a987c"
+    GIT_COMMIT_HASH = "3a4cf6a38e20f93bda86196af49242b0f7c7385b"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -92,8 +92,9 @@ class MotifUtils:
            parameter "file" of type "File" -> structure: parameter "path" of
            String, parameter "shock_id" of String, parameter "ftp_url" of
            String, parameter "ws_name" of type "workspace_name" (workspace
-           name of the object), parameter "genome" of type "GenomeRef" (Ref
-           to a sequence set @id ws KBaseGenomes.Genome)
+           name of the object), parameter "seq_set_ref" of type
+           "SequenceSetRef" (Ref to a sequence set @id ws
+           KBaseGeneRegulation.SequenceSet)
         :returns: instance of type "MotifSet" (Condition - description of
            conditionused to select sequences SequenceSet_ref - reference to
            sequenceset used to find motifs Motifs - list of motifs Alphabet -
@@ -140,7 +141,9 @@ class MotifUtils:
            parameter "file" of type "File" -> structure: parameter "path" of
            String, parameter "shock_id" of String, parameter "ftp_url" of
            String, parameter "obj_name" of String, parameter "ws_name" of
-           type "workspace_name" (workspace name of the object)
+           type "workspace_name" (workspace name of the object), parameter
+           "seq_set_ref" of type "SequenceSetRef" (Ref to a sequence set @id
+           ws KBaseGeneRegulation.SequenceSet)
         :returns: instance of type "MotifSetRef" (Ref to a sequence set @id
            ws KBaseGeneRegulation.MotifSet)
         """
