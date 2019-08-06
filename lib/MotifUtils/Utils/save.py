@@ -20,14 +20,14 @@ class MotifSaver:
             # TODO: check if list is a save_objects list or list of motifsets process accordingly
             # TODO: accept list of object names
             self.dfu.save_objects({
-                'id': params['ws_name'],
+                'id': self.dfu.ws_name_to_id(params['ws_name']),
                 'objects': motifset
             })
         elif isinstance(motifset, dict):
             logging.info('Saving a single motifset object...')
             # TODO: accept object name
             self.dfu.save_objects({
-                'id': params['ws_name'],
+                'id': self.dfu.ws_name_to_id(params['ws_name']),
                 'objects': [{
                     'type': 'KBaseGeneRegulation.MotifSet',
                     'data': motifset,
