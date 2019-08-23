@@ -1,24 +1,20 @@
 # -*- coding: utf-8 -*-
 import unittest
-import os  # noqa: F401
-import json  # noqa: F401
+import os
 import time
-import requests
+import uuid
 
+from pprint import pprint as pp
 from os import environ
-try:
-    from ConfigParser import ConfigParser  # py2
-except:
-    from configparser import ConfigParser  # py3
+from configparser import ConfigParser
 
-from pprint import pprint  # noqa: F401
-
-from DataFileUtil.DataFileUtilClient import DataFileUtil
 from biokbase.workspace.client import Workspace as workspaceService
 from MotifUtils.MotifUtilsImpl import MotifUtils
 from MotifUtils.MotifUtilsServer import MethodContext
 from MotifUtils.authclient import KBaseAuth as _KBaseAuth
+from installed_clients.DataFileUtilClient import DataFileUtil
 
+from MotifUtils.Utils.save import MotifSaver
 
 class MotifUtilsTest(unittest.TestCase):
 
@@ -51,6 +47,8 @@ class MotifUtilsTest(unittest.TestCase):
         cls.serviceImpl = MotifUtils(cls.cfg)
         cls.scratch = cls.cfg['scratch']
         cls.callback_url = os.environ['SDK_CALLBACK_URL']
+        cls.dfu = DataFileUtil(cls.callback_url)
+        cls.MotifSaver = MotifSaver(cls.callback_url, cls.scratch )
 
     @classmethod
     def tearDownClass(cls):
@@ -77,7 +75,8 @@ class MotifUtilsTest(unittest.TestCase):
         return self.__class__.ctx
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
-    def test_import_meme(self):
+
+    def test_parse_meme(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
         #                                  'objects': []})
@@ -87,17 +86,180 @@ class MotifUtilsTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        params = {}
-        params['local_path'] = '/kb/module/test/test_data/MEMEData.txt'
-        params['ws_name'] = self.getWsName()
-        params['format'] = 'MEME'
-        params['obj_name'] = 'TestObject'
-        dfu = DataFileUtil(self.callback_url)
-        #ret = self.getImpl().importFromNarrative(self.getContext(),params)[0]
-        #print(ret)
-        result = self.getImpl().importFromNarrative(self.getContext(),params)
-        get_objects_params = {}
-        get_objects_params['object_refs'] = [result[0]['obj_ref']]
-        MotifSet = dfu.get_objects(get_objects_params)['data'][0]['data']
+        file = {'path': '/kb/module/test/sample_data/meme/meme.txt'}
+        params = {
+            'format': 'MEME',
+            'ws_name': 'rmr:narrative_1558461244202',
+            'file': file,
+            'genome_ref': '28598/18/1',
+            'seq_set_ref': '28598/21/1'
+        }
 
-        pass
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+
+        # validate dfu type spec
+        resultobj = {
+                'type': 'KBaseGeneRegulation.MotifSet',
+                'data': result[0],
+                'name': str(uuid.uuid4())
+        }
+
+        obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
+        self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
+
+    """
+    def test_parse_homer(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        file = {'path': '/kb/module/test/sample_data/homer'}
+        params = {
+            'format': 'HOMER',
+            'ws_name': 'rmr:narrative_1558461244202',
+            'file': file,
+            'genome_ref': '28598/18/1'
+        }
+
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+
+        # validate dfu type spec
+        resultobj = {
+            'type': 'KBaseGeneRegulation.MotifSet',
+            'data': result[0],
+            'name': str(uuid.uuid4())
+        }
+
+        obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
+        self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
+
+    def test_parse_gibbs(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        file = {'path': '/kb/module/test/sample_data/gibbs'}
+        params = {
+            'format': 'GIBBS',
+            'ws_name': 'rmr:narrative_1558461244202',
+            'file': file,
+            'genome_ref': '28598/18/1'
+        }
+
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+
+        # validate dfu type spec
+        resultobj = {
+            'type': 'KBaseGeneRegulation.MotifSet',
+            'data': result[0],
+            'name': str(uuid.uuid4())
+        }
+
+        obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
+        self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
+
+    def test_parse_gibbs(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        file = {'path': '/kb/module/test/sample_data/gibbs'}
+        params = {
+            'format': 'GIBBS',
+            'ws_name': 'rmr:narrative_1558461244202',
+            'file': file,
+            'genome_ref': '28598/18/1'
+        }
+
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+
+        # validate dfu type spec
+        resultobj = {
+            'type': 'KBaseGeneRegulation.MotifSet',
+            'data': result[0],
+            'name': str(uuid.uuid4())
+        }
+
+        obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
+        self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
+    
+
+    def test_parse_mfmd(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        file = {'path': '/kb/module/test/sample_data/mfmd'}
+        params = {
+            'format': 'MFMD',
+            'ws_name': 'rmr:narrative_1558461244202',
+            'file': file,
+            'genome_ref': '28598/18/1'
+        }
+
+        result = self.getImpl().parseMotifSet(self.getContext(), params)
+
+        # validate dfu type spec
+        resultobj = {
+            'type': 'KBaseGeneRegulation.MotifSet',
+            'data': result[0],
+            'name': str(uuid.uuid4())
+        }
+
+        obj = self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects': [resultobj]})[0]
+        self.assertIn('KBaseGeneRegulation.MotifSet', obj[2])
+
+    def test_parse_old_meme(self):
+        file = {'path': '/kb/module/test/sample_data/mfmd'}
+        params = {
+            'path': '/kb/module/test/sample_data/meme/meme.txt',
+            'ws_name': self.getWsName(),
+            'obj_name': 'test_obj',
+            'absolute_locations': ('test', 'test')
+        }
+
+        with self.assertRaises(ValueError):
+            result = self.getImpl().UploadFromMEME(self.getContext(), params)
+
+    def test_parse_old_homer(self):
+        params = {
+            'path': '/kb/module/test/sample_data/homer',
+            'ws_name': self.getWsName(),
+            'obj_name': 'test_obj',
+            'absolute_locations': ('test', 'test')
+        }
+
+        with self.assertRaises(ValueError):
+            result = self.getImpl().UploadFromHomer(self.getContext(), params)
+
+    def test_parse_old_gibbs(self):
+        params = {
+            'path': '/kb/module/test/sample_data/gibbs',
+            'ws_name': self.getWsName(),
+            'obj_name': 'test_obj',
+            'absolute_locations': ('test', 'test')
+        }
+
+        with self.assertRaises(ValueError):
+            result = self.getImpl().UploadFromGibbs(self.getContext(), params)
+    """

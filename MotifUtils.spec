@@ -3,117 +3,159 @@ A KBase module: MotifUtils
 */
 
 module MotifUtils {
+    /* workspace name of the object */
+    typedef string workspace_name;
 
-/*
-NOTES:
-What do we need to be able to do with a MotifSet?
-Convert and save motifset in common format(JASPAR, etc.)
-Save motifSet to shock
-Pull motifset from shock
-Save motifSet to workspace
+    /* An X/Y/Z style reference */
+    typedef string obj_ref;
 
+    /* Input/Output motif format
+        @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC", "MFMD")
+    */
+    typedef string motif_format;
 
-functions:
-save - take a motifset
-upload - take an external format(JASPAR) and convert it to KBase motifset
-download - take a motifset object and create an external format(JASPAR)
-export - download file from shock to workspace as an object?
+    /* Ref to a sequence set
+        @id ws KBaseGeneRegulation.MotifSet
+    */
+    typedef string MotifSetRef;
 
-dfu.save_objects -> use this when you want to make an object
-dfu.get_objects -> use this to get object from shock
+    /* Ref to a sequence set
+        @id ws KBaseGeneRegulation.SequenceSet
+    */
+    typedef string SequenceSetRef;
 
-destination_ref - ws_name / object_name
-convert ws_name to id, used by save_objects
-*/
+    typedef structure {
+        string path;
+        string shock_id;
+        string ftp_url;
+    } File;
 
+    /*
+        Functionality of Motif Utils:
+            1. upload external motif finder outputs to KBase MotifSet object (Import Motifs frontend)
+            2. parse a  container local file of an accepted motif application output into a motif set object
+            3. save a container local file of accepted motif application output to a motif set object
+            4. download motifset object as a motif application output file (Download Motifs frontend)
 
+        Add future implementation here: https://github.com/kbasecollaborations/MotifUtils
+    */
 
+    /*
+        sequence_id - id of sequence motif was found in associated sequenceset
+        start - start of motif in the sequence
+        end - end of motif in the sequence
+        orientation - +/-
+        sequence - actual motif sequence, might not match exactly to IUPAC
+    */
 
-/*
-*/
-typedef structure{
-  string obj_ref;
-} UploadOutput;
+    typedef structure {
+      string sequence_id;
+      int start;
+      int end;
+      string orientation;
+      string sequence;
+    } Motif_Location;
 
-typedef structure{
-  string ws_name;
-  string source_ref;
-  string format;
-  string outname;
-} DownloadParams;
+    /*
+        one of PWM or PFM must be included
+        PWM - position weight matrix of motif
+        PFM - position frequency matrix of motif
+        Iupac_signature - motif represented in Iupac notation
+        Motif_Locations - list of locations where motif has been found
+    */
+    typedef structure {
+      mapping<string, list<float>> PWM;
+      mapping<string, list<float>> PFM;
+      string Iupac_sequence;
+      list<Motif_Location> Motif_Locations;
+    } Motif;
 
-typedef structure{
-  string destination_path;
-} DownloadOutput;
+    /*
+        Condition - description of conditionused to select sequences
+        SequenceSet_ref - reference to sequenceset used to find motifs
+        Motifs - list of motifs
+        Alphabet - list of letters used in sequences, e.g. ['A','C','G','T'] for DNA
+        Background - background frequencies of letters in alphabet
+    */
+    typedef structure {
+      string Condition;
+      string SequenceSet_ref;
+      list<Motif> Motifs;
+      list<string> Alphabet;
+      mapping<string, float> Background;
+    } MotifSet;
 
-typedef structure{
-  string ws_name;
-  string staging_path;
-  string local_path;
-  string shock_id;
-  string format;
-  string obj_name;
-} ImportNarrativeInParams;
+    typedef structure{
+        string report_name;
+        string report_ref;
+        MotifSetRef motif_obj;
+    } UIOutParams;
 
-typedef structure{
-  string obj_ref;
-} ImportNarrativeOutParams;
+    typedef structure{
+        motif_format format;
+        string path;
+        string obj_name;
+        workspace_name ws_name;
+    } uploadParams;
 
-typedef structure{
-  string path;
-  string ws_name;
-  string obj_name;
-} UploadJASPARInParams;
+    funcdef uploadMotifSet(uploadParams params)
+      returns (UIOutParams out) authentication required;
 
-typedef structure{
-  string path;
-  string ws_name;
-  string obj_name;
-} UploadTRANSFACInParams;
+    typedef structure{
+        motif_format format;
+        File file;
+        workspace_name ws_name;
+        SequenceSetRef seq_set_ref;
+    } parseParams;
 
-/*
-optional - absolute_locations
-*/
-typedef structure{
-  string path;
-  string ws_name;
-  string obj_name;
-  mapping<string, string> absolute_locations;
-} UploadMEMEInParams;
+    funcdef parseMotifSet(parseParams params)
+      returns (MotifSet out) authentication required;
 
-typedef structure{
-  string path;
-  string ws_name;
-  string obj_name;
-} UploadGibbsInParams;
+    typedef structure{
+        motif_format format;
+        File file;
+        string obj_name;
+        workspace_name ws_name;
+        SequenceSetRef seq_set_ref;
+    } saveParams;
 
-typedef structure{
-  string path;
-  string ws_name;
-  string obj_name;
-  string location_path;
-} UploadHomerInParams;
+    funcdef saveMotifSet(saveParams params)
+      returns (MotifSetRef out) authentication required;
 
-funcdef UploadFromGibbs(UploadMEMEInParams params)
-  returns (UploadOutput output)  authentication required;
+    typedef structure{
+        motif_format format;
+        MotifSetRef motifset;
+        workspace_name ws_name;
+    } downloadParams;
 
-funcdef UploadFromHomer(UploadHomerInParams params)
-  returns (UploadOutput output)  authentication required;
+    funcdef downloadMotifSet(downloadParams params)
+      returns (UIOutParams out) authentication required;
 
-funcdef UploadFromMEME(UploadGibbsInParams params)
-  returns (UploadOutput output)  authentication required;
+    /* Backwards compatability */
+    typedef structure{
+      string path;
+      string ws_name;
+      string obj_name;
+      mapping<string, string> absolute_locations;
+    } UploadMEMEInParams;
 
-funcdef UploadFromJASPAR(UploadJASPARInParams params)
-  returns (UploadOutput output)  authentication required;
+    typedef structure{
+      string path;
+      string ws_name;
+      string obj_name;
+    } UploadGibbsInParams;
 
-funcdef UploadFromTRANSFAC(UploadTRANSFACInParams params)
-  returns (UploadOutput output)  authentication required;
+    typedef structure{
+      string path;
+      string ws_name;
+      string obj_name;
+      string location_path;
+    } UploadHomerInParams;
 
-funcdef DownloadMotifSet(DownloadParams params)
-  returns (DownloadOutput output)  authentication required;
-
-funcdef importFromNarrative(ImportNarrativeInParams params)
-  returns (ImportNarrativeOutParams out) authentication required;
-
-
+    funcdef UploadFromGibbs(UploadMEMEInParams params)
+      returns (UIOutParams output)  authentication required;
+    funcdef UploadFromHomer(UploadHomerInParams params)
+      returns (UIOutParams output)  authentication required;
+    funcdef UploadFromMEME(UploadGibbsInParams params)
+      returns (UIOutParams output)  authentication required;
 };

@@ -1,0 +1,1 @@
+cmd = /kb/module/work/tmp/SeqSet.fa fasta /kb/module/work/tmp/homer_out -basic -len 8,10,12,14,16, -S 5

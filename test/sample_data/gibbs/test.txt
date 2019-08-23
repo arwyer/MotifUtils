@@ -1,0 +1,685 @@
+Gibbs /kb/module/work/tmp/SeqSet.fa 16 -n 
+
+Gibbs 3.10.001  Jul  9 2019
+Data file: /kb/module/work/tmp/SeqSet.fa
+Current directory: /kb/module/test
+The following options are set:
+Concentrated Region          False    Sequence type        False
+Collapsed Alphabet           False    Pseudocount weight   False
+Use Expectation/Maximization False    Don't Xnu sequence   False
+Help flag                    False    Near optimal cutoff  False
+Number of iterations         False    Don't fragment       False
+Don't use map maximization   False    Repeat regions       False
+Output file                  False    Informed priors file False
+Plateau periods              False    palindromic sequence False
+Don't Reverse complement     False    Number of seeds      False
+Seed Value                   False    Pseudosite weight    False
+Suboptimal sampler output    False    Overlap              False
+Allow width to vary          False    Wilcoxon signed rank False
+Sample along length          False    Output Scan File     False
+Output prior file            False    Modular Sampler      False
+Ignore Spacing Model         False    Sample Background    False
+Bkgnd Comp Model             False    Init from prior      False
+Homologous Seq pairs         False    Parallel Tempering   False
+Group Sampler                False    No progress info     False
+Fragment from middle         False    Verify Mode          False
+Alternate sample on k        False    No freq. soln.       False
+Calc. def. pseudo wt.        False    Motif/Recur smpl     False
+Phylogenetic Sampling        False    Supress Near Opt.    False
+Nearopt display cutoff       False    Sample model         False
+Hierarchical Model           False    Centroid model       False
+Print Bayesian Counts        False    Align Centroid       False
+Calculate Credibility Limits False    Frequency Bkgnd.     False
+
+site_samp            =            1
+nMotifLen            =           16
+nAlphaLen            =            4
+nNumMotifs           =           37
+dPseudoCntWt         =          0.1
+dPseudoSiteWt        =          0.8
+nMaxIterations       =          500
+lSeedVal             =   1564509910
+nPlateauPeriods      =           20
+nSeeds               =           10
+nNumMotifTypes       =            1
+dCutoff              =         0.01
+dNearOptDispCutoff   =          0.5
+RevComplement        =            1
+glOverlapParam       =            0
+Rcutoff factor       =            0
+Post Plateau Samples =            0
+Frag/Shft Per.       =            5
+Frag width           =           24
+
+
+Sequences to be Searched:
+_________________________
+#1   Potri.005G168700
+#2   Potri.001G404100
+#3   Potri.012G127700
+#4   Potri.014G103700
+#5   Potri.011G055500
+#6   Potri.011G123300
+#7   Potri.009G096000
+#8   Potri.012G007500
+#9   Potri.019G031400
+#10  Potri.001G055900
+#11  Potri.014G103000
+#12  Potri.010G163000
+#13  Potri.007G013600
+#14  Potri.005G069500
+#15  Potri.007G099400
+#16  Potri.003G050100
+#17  Potri.009G089400
+#18  Potri.007G029400
+#19  Potri.017G146800
+#20  Potri.009G032700
+#21  Potri.002G152200
+#22  Potri.017G084600
+#23  Potri.008G140400
+#24  Potri.015G034500
+#25  Potri.003G163600
+#26  Potri.001G397200
+#27  Potri.008G089000
+#28  Potri.004G074300
+#29  Potri.012G023700
+#30  Potri.014G025200
+#31  Potri.001G252600
+#32  Potri.008G122100
+#33  Potri.018G114100
+#34  Potri.010G169400
+#35  Potri.001G029800
+#36  Potri.011G106800
+#37  Potri.002G081000
+Processed Sequence Length: 74000 Total sequence length: 74000
+
+Seed = 1564509910
+
+
+
+
+
+
+motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 1 **
+1234[] cycle 4 MAP -6.42597 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+56[+] cycle 6 MAP -1.58274 (37 sites) Prev: -6.42597 Diff: 4.84323 Motifs: 37
+789101112131415[] cycle 15 MAP 1.06162 (37 sites) Prev: -1.58274 Diff: 2.64436 Motifs: 37
+1617181920[] cycle 20 MAP 1.37988 (37 sites) Prev: 1.06162 Diff: 0.318258 Motifs: 37
+21[] cycle 21 MAP 9.24203 (37 sites) Prev: 1.37988 Diff: 7.86215 Motifs: 37
+2223242526272829303132333435363738394041
+MAX :: 9.242028 (Seed = 1564509910, Iteration = 21   Motif A = 37 )
+motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 2 **
+1234[] cycle 4 MAP -24.4197 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP 9.03739 (37 sites) Prev: -24.4197 Diff: 33.4571 Motifs: 37
+6789[] cycle 9 MAP 14.7387 (37 sites) Prev: 9.03739 Diff: 5.70132 Motifs: 37
+101112[] cycle 12 MAP 19.1801 (37 sites) Prev: 14.7387 Diff: 4.44135 Motifs: 37
+13[] cycle 13 MAP 22.3416 (37 sites) Prev: 19.1801 Diff: 3.16159 Motifs: 37
+141516171819202122[--] cycle 22 MAP 27.4186 (37 sites) Prev: 22.3416 Diff: 5.07693 Motifs: 37
+2324252627282930313233343536373839404142
+MAX :: 27.418575 (Seed = 1564509910, Iteration = 22   Motif A = 37 )
+motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 3 **
+1234[-] cycle 4 MAP -35.4096 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -6.56311 (37 sites) Prev: -35.4096 Diff: 28.8465 Motifs: 37
+6789[] cycle 9 MAP -3.61155 (37 sites) Prev: -6.56311 Diff: 2.95156 Motifs: 37
+10[] cycle 10 MAP 5.95707 (37 sites) Prev: -3.61155 Diff: 9.56862 Motifs: 37
+11121314151617[] cycle 17 MAP 12.4214 (37 sites) Prev: 5.95707 Diff: 6.4643 Motifs: 37
+1819202122232425262728293031323334353637motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 4 **
+1234[] cycle 4 MAP -22.76 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -1.66592 (37 sites) Prev: -22.76 Diff: 21.0941 Motifs: 37
+67891011[] cycle 11 MAP 9.43412 (37 sites) Prev: -1.66592 Diff: 11.1 Motifs: 37
+1213141516171819202122232425262728293031motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 5 **
+1234[] cycle 4 MAP -13.9517 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5678[] cycle 8 MAP 7.49822 (37 sites) Prev: -13.9517 Diff: 21.45 Motifs: 37
+91011121314151617181920[] cycle 20 MAP 8.84979 (37 sites) Prev: 7.49822 Diff: 1.35157 Motifs: 37
+2122232425262728293031323334353637383940motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 6 **
+1234[-] cycle 4 MAP -49.8525 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -26.4036 (37 sites) Prev: -49.8525 Diff: 23.4489 Motifs: 37
+6[] cycle 6 MAP 14.0741 (37 sites) Prev: -26.4036 Diff: 40.4777 Motifs: 37
+7[] cycle 7 MAP 21.8307 (37 sites) Prev: 14.0741 Diff: 7.75656 Motifs: 37
+89101112131415161718192021222324252627motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 7 **
+1234[] cycle 4 MAP -8.99039 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -2.31733 (37 sites) Prev: -8.99039 Diff: 6.67307 Motifs: 37
+6[] cycle 6 MAP -1.84795 (37 sites) Prev: -2.31733 Diff: 0.469372 Motifs: 37
+7891011[] cycle 11 MAP 2.49563 (37 sites) Prev: -1.84795 Diff: 4.34359 Motifs: 37
+1213141516171819[] cycle 19 MAP 4.90979 (37 sites) Prev: 2.49563 Diff: 2.41416 Motifs: 37
+2021[] cycle 21 MAP 6.60652 (37 sites) Prev: 4.90979 Diff: 1.69673 Motifs: 37
+2223242526272829303132333435363738394041motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 8 **
+1234[] cycle 4 MAP -27.3518 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -7.82134 (37 sites) Prev: -27.3518 Diff: 19.5304 Motifs: 37
+6[] cycle 6 MAP -1.34776 (37 sites) Prev: -7.82134 Diff: 6.47358 Motifs: 37
+789[] cycle 9 MAP 9.19957 (37 sites) Prev: -1.34776 Diff: 10.5473 Motifs: 37
+10[] cycle 10 MAP 10.7749 (37 sites) Prev: 9.19957 Diff: 1.57535 Motifs: 37
+1112131415161718192021222324252627282930motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 9 **
+1234[] cycle 4 MAP -57.2447 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -27.946 (37 sites) Prev: -57.2447 Diff: 29.2987 Motifs: 37
+6[] cycle 6 MAP -9.20696 (37 sites) Prev: -27.946 Diff: 18.7391 Motifs: 37
+7[] cycle 7 MAP 0.598901 (37 sites) Prev: -9.20696 Diff: 9.80586 Motifs: 37
+89101112131415[] cycle 15 MAP 12.3367 (37 sites) Prev: 0.598901 Diff: 11.7378 Motifs: 37
+1617181920212223242526272829303132333435motif A: 37 (+/- 21.36) out of 72853   a = 148; b = 291264; p = 0.000503778
+** 10 **
+1234[] cycle 4 MAP -20.1147 (37 sites) Prev: -1.79769e+308 Diff: 1.79769e+308 Motifs: 37
+5[] cycle 5 MAP -17.9017 (37 sites) Prev: -20.1147 Diff: 2.21304 Motifs: 37
+6[] cycle 6 MAP -16.8739 (37 sites) Prev: -17.9017 Diff: 1.02778 Motifs: 37
+7[] cycle 7 MAP -8.71433 (37 sites) Prev: -16.8739 Diff: 8.15957 Motifs: 37
+89[] cycle 9 MAP -3.23762 (37 sites) Prev: -8.71433 Diff: 5.47672 Motifs: 37
+101112131415[] cycle 15 MAP 3.98581 (37 sites) Prev: -3.23762 Diff: 7.22342 Motifs: 37
+16171819[] cycle 19 MAP 13.7251 (37 sites) Prev: 3.98581 Diff: 9.73932 Motifs: 37
+2021222324252627282930313233343536373839Max subopt MAP found on seed 2
+
+
+
+
+
+======================================================================
+======================== NEAR OPTIMAL RESULTS ========================
+======================================================================
+
+MAP = 111 maybe = 2451 discard = 71549
+Max set 30.010257 at 1
+Max set 34.815947 at 2
+Max set 37.315967 at 4
+5Max set 38.707929 at 5
+101520Max set 39.949176 at 20
+Max set 43.859055 at 22
+25303540455055Max set 44.570855 at 56
+6065707580859095100105110115120125130135140145150155160165Max set 44.769659 at 165
+170175180185190195200205210215220225230235240245250255260265270275280285290295300305310315320325330335340345350355360365370375380385390395Max set 46.906596 at 399
+400405410415420425430435440445450455460465470475480485490495500-------------------------------------------------------------------------
+                          MOTIF a
+
+
+
+
+
+Motif model (residue frequency x 100)
+____________________________________________
+Pos. #     a   t   c   g  Info
+_____________________________
+   1 |     8  72  16   2  0.4
+
+   4 |     2  18  35  43  0.6
+   5 |     2  97  .   .   1.0
+   6 |    .   97   2  .   1.1
+   7 |    .   81  16   2  0.7
+   8 |     5  89  .    5  0.8
+   9 |     2  94  .    2  0.9
+  10 |    .  100  .   .   1.2
+  11 |    .  100  .   .   1.2
+  12 |    13  86  .   .   0.7
+  13 |     2  97  .   .   1.0
+  14 |     2  94  .    2  0.9
+  15 |    10  89  .   .   0.8
+  16 |     8  83   5   2  0.6
+  17 |     2  97  .   .   1.0
+  18 |    21  72   5  .   0.4
+
+nonsite   34  34  16  14
+site       5  85   5   3
+
+Motif probability model
+____________________________________________
+Pos. #    a     t     c     g   
+____________________________________________
+   1 |  0.105 0.694 0.162 0.038 
+
+   4 |  0.056 0.203 0.334 0.407 
+   5 |  0.056 0.916 0.015 0.014 
+   6 |  0.032 0.916 0.039 0.014 
+   7 |  0.032 0.768 0.162 0.038 
+   8 |  0.081 0.842 0.015 0.063 
+   9 |  0.056 0.891 0.015 0.038 
+  10 |  0.032 0.940 0.015 0.014 
+  11 |  0.032 0.940 0.015 0.014 
+  12 |  0.154 0.817 0.015 0.014 
+  13 |  0.056 0.916 0.015 0.014 
+  14 |  0.056 0.891 0.015 0.038 
+  15 |  0.130 0.842 0.015 0.014 
+  16 |  0.105 0.793 0.064 0.038 
+  17 |  0.056 0.916 0.015 0.014 
+  18 |  0.228 0.694 0.064 0.014 
+
+
+
+Background probability model
+        0.347 0.340 0.163 0.150 
+
+
+
+16 columns
+Num Motifs: 37
+   1,  1    1937 agaac TAGGTTTTTTTTTTTCTT ctgaa    1954   1.00 F Potri.005G168700
+   2,  1    1507 taacc TGGGTTTTTTTTTTTTTT tttgg    1490   1.00 R Potri.001G404100
+   3,  1     743 ctcat TTAGTTTTTTTTTTTCTT aatgg     760   1.00 F Potri.012G127700
+   4,  1     402 aatta TTAGTTTTTTTTTTTGAA ttggt     419   0.72 F Potri.014G103700
+   5,  1    1897 tttgt TTTCTTTTTTTTTTTTTT tggaa    1880   1.00 R Potri.011G055500
+   6,  1    1190 caaga TACCTTCTTTTTTTTTTT ggtga    1173   1.00 R Potri.011G123300
+   7,  1    1275 aaatt TCCTTTCTTTTTTGTTTT tgaaa    1292   0.92 F Potri.009G096000
+   8,  1     836 taaat TGAGATTTTTTTTTTTTT catct     819   0.98 R Potri.012G007500
+   9,  1    1619 aaata ATATTTTTTTTATTTTTT aaaaa    1602   0.85 R Potri.019G031400
+  10,  1    1054 aaaaa TATGTTTTTTTTTTTATT tccgt    1071   0.99 F Potri.001G055900
+  11,  1     202 ctatt CTGCTTTTTTTTTTAATC atccc     185   0.65 R Potri.014G103000
+  12,  1    1170 aaata TTGCTTTATTTTTTTTTA gaaaa    1187   0.97 F Potri.010G163000
+  13,  1    1783 actag CCCCTTTTTTTTATTATT attat    1766   0.77 R Potri.007G013600
+  14,  1     784 gtgat ATTGTTTTTTTTTTTTTT taatt     767   0.99 R Potri.005G069500
+  15,  1    1382 acttc TCTCTTCGTTTTTTTTTT taatt    1399   0.99 F Potri.007G099400
+  16,  1     925 ccacg TGCGTTGTTTTATTATTA ttatt     908   0.47 R Potri.003G050100
+  17,  1    1658 attta TTTGTTCTTTTTTTTTTA aaaaa    1675   0.99 F Potri.009G089400
+  18,  1     743 atact CAAGTTTTTTTTTTATTA aatca     760   0.97 F Potri.007G029400
+  19,  1     673 caaaa TTTTTTTATTTTTTATTT ttcta     690   0.79 F Potri.017G146800
+  20,  1     108 tggag CAATTTTTTTTTTTTTTA aaaag     125   0.98 F Potri.009G032700
+  21,  1     556 catgt TTCCTTTTTTTTTTTTTT gttaa     573   1.00 F Potri.002G152200
+  22,  1     482 ggttt TTAGTTTTTTTTTTTTTC aagaa     465   0.99 R Potri.017G084600
+  23,  1    1169 taata TTATTTTTATTTTATTTT atttc    1186   0.50 F Potri.008G140400
+  24,  1    1747 aattc TATGTTCTTTTATTTTTT atttt    1764   0.99 F Potri.015G034500
+  25,  1     639 tatag CCTCTTTTTTTTTTTTTT gccct     622   1.00 R Potri.003G163600
+  26,  1     818 cttga TTTGTTTGTTTTTTTTTT aattt     835   1.00 F Potri.001G397200
+  27,  1    1281 ttttt TATGTTTTTTTATTTTTA tatgc    1298   0.99 F Potri.008G089000
+  28,  1     416 atgat TGAGTTTTTTTTTTTTTT tatta     433   1.00 F Potri.004G074300
+  29,  1    1937 atgcc TGCCTTTTTTTTTTTTTT gtagt    1920   1.00 R Potri.012G023700
+  30,  1    1662 caaaa TAATTTTTTTTATTTTTT atatc    1679   0.98 F Potri.014G025200
+  31,  1    1149 cttct TTTCTCTTTTTTTTTTTT gccac    1132   0.99 R Potri.001G252600
+  32,  1     498 tcttc TTCCTTCTTTTTTTTTTT atatc     481   1.00 R Potri.008G122100
+  33,  1     650 taccc GAAATTTTTTTTTTTTTT gccag     667   0.90 F Potri.018G114100
+  34,  1    1365 atagc TGCCTTTTGTTTTTTTTT tctgt    1382   0.99 F Potri.010G169400
+  35,  1     710 tttca TTGGTTTTTTTTTTTTTA aaaaa     727   1.00 F Potri.001G029800
+  36,  1    1997   ttg CTTTTTTTTTTTTTTTTT tatta    1980   0.99 R Potri.011G106800
+  37,  1     959 ggctt AAACTTTTTTTTTTTTTT cagtt     942   0.99 R Potri.002G081000
+                       *  ***************
+
+
+Column 1 :  Sequence Number, Site Number
+Column 2 :  Left End Location
+Column 4 :  Motif Element
+Column 6 :  Right End Location
+Column 7 :  Probability of Element
+Column 8 :  Forward Motif (F) or Reverse Complement (R) 
+Column 9 :  Sequence Description from Fast A input
+
+Log Motif portion of MAP for motif a = -315.77977
+Log Fragmentation portion of MAP for motif a = -4.78749
+
+
+
+=============================================================
+====== ELEMENTS OCCURRING GREATER THAN  50% OF THE TIME =====
+======                    Motif a                       =====
+=============================================================
+
+
+Listing of those elements occurring greater than 50% of the time
+in near optimal sampling using 500 iterations
+
+
+
+Motif model (residue frequency x 100)
+____________________________________________
+Pos. #     a   t   c   g  Info
+_____________________________
+   1 |     5  88   5  .   0.6
+
+   4 |    .   11  52  35  0.7
+   5 |    .  100  .   .   0.9
+   6 |    .  100  .   .   0.9
+   7 |    .   76  23  .   0.6
+   8 |    .   94  .    5  0.8
+   9 |    .   94  .    5  0.8
+  10 |    .  100  .   .   0.9
+  11 |    .  100  .   .   0.9
+  12 |    11  88  .   .   0.6
+  13 |    .  100  .   .   0.9
+  14 |    .  100  .   .   0.9
+  15 |    .  100  .   .   0.9
+  16 |    .   88  11  .   0.7
+  17 |    .  100  .   .   0.9
+  18 |     5  94  .   .   0.7
+
+nonsite   34  34  16  14
+site       1  89   5   2
+
+Motif probability model
+____________________________________________
+Pos. #    a     t     c     g   
+____________________________________________
+   1 |  0.110 0.786 0.077 0.027 
+
+   4 |  0.062 0.158 0.464 0.317 
+   5 |  0.062 0.882 0.029 0.027 
+   6 |  0.062 0.882 0.029 0.027 
+   7 |  0.062 0.689 0.222 0.027 
+   8 |  0.062 0.834 0.029 0.075 
+   9 |  0.062 0.834 0.029 0.075 
+  10 |  0.062 0.882 0.029 0.027 
+  11 |  0.062 0.882 0.029 0.027 
+  12 |  0.159 0.786 0.029 0.027 
+  13 |  0.062 0.882 0.029 0.027 
+  14 |  0.062 0.882 0.029 0.027 
+  15 |  0.062 0.882 0.029 0.027 
+  16 |  0.062 0.786 0.126 0.027 
+  17 |  0.062 0.882 0.029 0.027 
+  18 |  0.110 0.834 0.029 0.027 
+
+
+
+Background probability model
+        0.347 0.340 0.163 0.150 
+
+
+
+16 columns
+Num Motifs: 17
+   1,  1    1937 agaac TAGGTTTTTTTTTTTCTT ctgaa    1954   0.86 F Potri.005G168700
+   2,  1    1507 taacc TGGGTTTTTTTTTTTTTT tttgg    1490   0.78 R Potri.001G404100
+   3,  1     743 ctcat TTAGTTTTTTTTTTTCTT aatgg     760   0.78 F Potri.012G127700
+   5,  1    1897 tttgt TTTCTTTTTTTTTTTTTT tggaa    1880   0.87 R Potri.011G055500
+   6,  1    1190 caaga TACCTTCTTTTTTTTTTT ggtga    1173   0.67 R Potri.011G123300
+  15,  1    1382 acttc TCTCTTCGTTTTTTTTTT taatt    1399   0.87 F Potri.007G099400
+  21,  1     556 catgt TTCCTTTTTTTTTTTTTT gttaa     573   0.83 F Potri.002G152200
+  24,  1    1747 aattc TATGTTCTTTTATTTTTT atttt    1764   0.61 F Potri.015G034500
+  25,  1     639 tatag CCTCTTTTTTTTTTTTTT gccct     622   0.65 R Potri.003G163600
+  28,  1     416 atgat TGAGTTTTTTTTTTTTTT tatta     433   0.76 F Potri.004G074300
+  29,  1    1937 atgcc TGCCTTTTTTTTTTTTTT gtagt    1920   0.81 R Potri.012G023700
+  30,  1    1662 caaaa TAATTTTTTTTATTTTTT atatc    1679   0.63 F Potri.014G025200
+  32,  1     498 tcttc TTCCTTCTTTTTTTTTTT atatc     481   0.88 R Potri.008G122100
+  34,  1    1365 atagc TGCCTTTTGTTTTTTTTT tctgt    1382   0.72 F Potri.010G169400
+  35,  1     710 tttca TTGGTTTTTTTTTTTTTA aaaaa     727   0.59 F Potri.001G029800
+  36,  1    1999     t TGCTTTTTTTTTTTTTTT tttat    1982   0.51 R Potri.011G106800
+  37,  1     959 ggctt AAACTTTTTTTTTTTTTT cagtt     942   0.72 R Potri.002G081000
+                       *  ***************
+
+
+Log Background portion of Map = -96493.19910
+Log Alignment portion of Map = -318.05721
+Log Site/seq portion of Map = 0.00000
+Log Null Map = -97178.73016
+Log Map = 46.90660
+
+
+log MAP = sum of motif and fragmentation parts of MAP + background + alignment + sites/seq - Null
+
+
+
+
+
+
+======================================================================
+======================== MAP MAXIMIZATION RESULTS ====================
+======================================================================
+
+-------------------------------------------------------------------------
+                          MOTIF a
+
+
+
+
+
+Motif model (residue frequency x 100)
+____________________________________________
+Pos. #     a   t   c   g  Info
+_____________________________
+   1 |    14  64  20   1  0.4
+
+   4 |    13  42  23  20  0.1
+   5 |    14  82  .    2  0.7
+   6 |     7  87   3  .   0.8
+   7 |     5  77  13   3  0.6
+   8 |     4  85   1   7  0.8
+   9 |     9  84   3   2  0.7
+  10 |     2  87   5   5  0.8
+  11 |     3  94  .    1  1.1
+  12 |    22  75   2  .   0.6
+  13 |     9  78  10   2  0.6
+  14 |     2  94  .    2  1.1
+  15 |     8  89   2  .   0.9
+  16 |     3  93   2  .   1.1
+  17 |    .   98  .    1  1.3
+  18 |    23  61  14  .   0.3
+
+nonsite   33  35  16  14
+site       9  81   6   3
+
+Motif probability model
+____________________________________________
+Pos. #    a     t     c     g   
+____________________________________________
+   1 |  0.146 0.636 0.204 0.014 
+
+   4 |  0.141 0.424 0.231 0.203 
+   5 |  0.152 0.814 0.003 0.031 
+   6 |  0.085 0.864 0.042 0.009 
+   7 |  0.063 0.764 0.137 0.036 
+   8 |  0.052 0.847 0.020 0.081 
+   9 |  0.102 0.836 0.037 0.025 
+  10 |  0.029 0.864 0.053 0.053 
+  11 |  0.046 0.936 0.003 0.014 
+  12 |  0.224 0.747 0.026 0.003 
+  13 |  0.096 0.775 0.104 0.025 
+  14 |  0.029 0.936 0.003 0.031 
+  15 |  0.091 0.881 0.026 0.003 
+  16 |  0.046 0.925 0.026 0.003 
+  17 |  0.007 0.975 0.003 0.014 
+  18 |  0.235 0.608 0.148 0.009 
+
+
+
+Background probability model
+        0.343 0.338 0.167 0.152 
+
+
+
+16 columns
+Num Motifs: 176
+   1,  1     901 ttttc CAAATTTTTTTTTTATTA ttatt     884   0.00 R Potri.005G168700
+   1,  2    1719 gagat CCAGGTTTTTTTTTTCTT aaacg    1736   0.02 F Potri.005G168700
+   1,  3    1937 agaac TAGGTTTTTTTTTTTCTT ctgaa    1954   0.86 F Potri.005G168700
+   2,  1    1297 gccat ATCCTTTTATTTTTTTTC ttttg    1314   0.00 F Potri.001G404100
+   2,  2    1507 taacc TGGGTTTTTTTTTTTTTT tttgg    1490   0.78 R Potri.001G404100
+   3,  1     384 agtct CTTGATTTTTTATTTTTC agttt     367   0.00 R Potri.012G127700
+   3,  2     603 gtgct TGATTTTTTGTTTTTATT tagct     586   0.01 R Potri.012G127700
+   3,  3     642 ttcag TTTTATCTTTTTTTATTT agatt     625   0.01 R Potri.012G127700
+   3,  4     678 ttttc CAGTTTTTTTTTGTTATT taatt     661   0.00 R Potri.012G127700
+   3,  5     743 ctcat TTAGTTTTTTTTTTTCTT aatgg     760   0.78 F Potri.012G127700
+   3,  6    1812 tacaa AGACTATTTTTTTTTTTA aaaaa    1829   0.01 F Potri.012G127700
+   3,  7    1906 cgtaa CAAGTTTAATTTTTTTTA gtgtt    1889   0.00 R Potri.012G127700
+   4,  1     399 tttaa TTATTAGTTTTTTTTTTT gaatt     416   0.05 F Potri.014G103700
+   4,  2     442 tacat TTTTTTTTCTTTTTTATT accaa     425   0.06 R Potri.014G103700
+   4,  3     568 agttt CCATTTTTTTTTCTTTTT gtttg     551   0.06 R Potri.014G103700
+   5,  1     531 aaccg ACTCTTTTTCTTTTTTTA ggaaa     514   0.00 R Potri.011G055500
+   5,  2    1335 ttaaa TCCCTTTTTGGTTTTTTA aagaa    1318   0.00 R Potri.011G055500
+   5,  3    1511 ttaag AAACATCTTTTTTTTTTT ttgaa    1528   0.01 F Potri.011G055500
+   5,  4    1897 tttgt TTTCTTTTTTTTTTTTTT tggaa    1880   0.87 R Potri.011G055500
+   6,  1     552 atatc TGTCTTTTCTTTTTCTTT ttttg     569   0.01 F Potri.011G123300
+   6,  2    1190 caaga TACCTTCTTTTTTTTTTT ggtga    1173   0.67 R Potri.011G123300
+   6,  3    1329 tcttt TTTCTTCTGTTATTTTTT gtttt    1346   0.02 F Potri.011G123300
+   6,  4    1408 ttttt CTTTTTCTTTTTCTTTTC ttgtt    1391   0.00 R Potri.011G123300
+   6,  5    1427 aggca TGTGATTGTTTTCTTTTT tcttt    1410   0.00 R Potri.011G123300
+   6,  6    1706 ttttt AAATTTCTTTTTATTTTT aatat    1689   0.01 R Potri.011G123300
+   7,  1     625 atttt CCTGTTATTTTTTTTTTA atcta     608   0.05 R Potri.009G096000
+   7,  2     917 gggca CTCCTTTTTTTTATTTTG agaga     900   0.03 R Potri.009G096000
+   7,  3    1275 aaatt TCCTTTCTTTTTTGTTTT tgaaa    1292   0.31 F Potri.009G096000
+   8,  1     580 aatat TAATATTTTTTTTTATTA ttatt     597   0.00 F Potri.012G007500
+   8,  2     836 taaat TGAGATTTTTTTTTTTTT catct     819   0.34 R Potri.012G007500
+   8,  3     909 actca TTTATTCTTTTATTTTTT aaaaa     926   0.10 F Potri.012G007500
+   8,  4    1353 ttttc CTTTTTCTTTTTCTTTTT cgtgt    1336   0.00 R Potri.012G007500
+   8,  5    1488 tttct CTTTTTATTTTTCTTTTT taatt    1471   0.00 R Potri.012G007500
+   8,  6    1635 gcttc TTTTTTTATTTATTTTTT taatg    1618   0.01 R Potri.012G007500
+   8,  7    1967 ggtgt CGTGTTTTATTTTTATTA tttat    1984   0.00 F Potri.012G007500
+   9,  1      63 aataa TATTTTTTTTATTTTTTA aaaat      46   0.05 R Potri.019G031400
+   9,  2     206 taaaa TAATATTTTTTTTATTTT taaaa     223   0.06 F Potri.019G031400
+   9,  3     663 aatat AATGTTTTTTTAATTTTT tcaaa     680   0.01 F Potri.019G031400
+   9,  4     970 aataa TATTTATTTTTATTTTTA aaaaa     987   0.01 F Potri.019G031400
+   9,  5    1211 taaaa TAATATTTTTTATTTTTT aaaag    1228   0.09 F Potri.019G031400
+   9,  6    1509 tttaa AAAATTTTATTTTTTTTT aattt    1526   0.06 F Potri.019G031400
+   9,  7    1619 aaata ATATTTTTTTTATTTTTT aaaaa    1602   0.11 R Potri.019G031400
+   9,  8    1878 aactg AATTTTCTCTTTTTTTTT gcaaa    1895   0.06 F Potri.019G031400
+  10,  1     217 atatg ACACTATTTTTTTTTTTC tttgg     234   0.00 F Potri.001G055900
+  10,  2    1054 aaaaa TATGTTTTTTTTTTTATT tccgt    1071   0.33 F Potri.001G055900
+  10,  3    1138 tagtt TTCATTTTCTTTCTTTTA tttga    1121   0.00 R Potri.001G055900
+  10,  4    1409 ttttc TTTGTTTTTTTTCTTTTC aattt    1392   0.01 R Potri.001G055900
+  10,  5    1698 gggga TCCTTTTCTTTTCTTTTC ttctt    1681   0.00 R Potri.001G055900
+  10,  6    1701 ggatc CCCCTTTTTTTTTTTTGA cagat    1718   0.01 F Potri.001G055900
+  10,  7    1812 aatgt TAAGTTTGTTTTGTTTTT ggttt    1829   0.06 F Potri.001G055900
+  11,  1      48 tacag AGTATTTTTTTTTTATTC agttt      31   0.00 R Potri.014G103000
+  11,  2     202 ctatt CTGCTTTTTTTTTTAATC atccc     185   0.02 R Potri.014G103000
+  12,  1     108 gagag TTTATACTTTTTTTTTTT tgttt     125   0.13 F Potri.010G163000
+  12,  2     918 cgcgg CTTTTTTCTTTTCTTTTT ccttt     935   0.01 F Potri.010G163000
+  12,  3    1170 aaata TTGCTTTATTTTTTTTTA gaaaa    1187   0.21 F Potri.010G163000
+  13,  1     430 taaac TTTTTTCTTTTTTTTTTA atgtg     413   0.37 R Potri.007G013600
+  13,  2    1143 ccaat TTTTTTTTTTTATTATTA acatg    1126   0.01 R Potri.007G013600
+  13,  3    1783 actag CCCCTTTTTTTTATTATT attat    1766   0.03 R Potri.007G013600
+  14,  1     136 ccagg CTTGGTTTTTTTTGTTTT ttctt     153   0.00 F Potri.005G069500
+  14,  2     389 gattt TATTTTATTTTATTTTTC tttcg     372   0.00 R Potri.005G069500
+  14,  3     449 gcagg GGGTTTTTTTTTTTCTTA ttcag     432   0.00 R Potri.005G069500
+  14,  4     784 gtgat ATTGTTTTTTTTTTTTTT taatt     767   0.13 R Potri.005G069500
+  14,  5    1367 tctct TCACTCTTTTTTTTTTTT ctaat    1384   0.13 F Potri.005G069500
+  14,  6    1461 acgtc ATATTTGTTTTTTTTTTC ctcct    1444   0.00 R Potri.005G069500
+  14,  7    1707 gctga CTGTTTTTCGTTTTTTTT gtcat    1690   0.00 R Potri.005G069500
+  15,  1    1281 aatga TGATTTTTATTTGTTTTT tcact    1264   0.03 R Potri.007G099400
+  15,  2    1382 acttc TCTCTTCGTTTTTTTTTT taatt    1399   0.87 F Potri.007G099400
+  16,  1     860 taaaa TAATATTTTTTATTTTTT aaaat     843   0.28 R Potri.003G050100
+  16,  2     925 ccacg TGCGTTGTTTTATTATTA ttatt     908   0.01 R Potri.003G050100
+  17,  1     350 ttttc TTGGGTTTTTTTTTTTTA aaaaa     367   0.00 F Potri.009G089400
+  17,  2     385 ataat TTGTTTTGTGTTTTTTTT taaaa     368   0.00 R Potri.009G089400
+  17,  3     909 aatta TTTTATTTTTTATTTTTA attgt     892   0.01 R Potri.009G089400
+  17,  4     910 taaaa TAATTTTTTTTTATTTTA ccagt     927   0.05 F Potri.009G089400
+  17,  5    1015 tattt TTATTTTATTTTTTTTTC tgcgt     998   0.02 R Potri.009G089400
+  17,  6    1143 tttat TTGTTTCTTCTTTTTTTC tgcgt    1126   0.01 R Potri.009G089400
+  17,  7    1658 attta TTTGTTCTTTTTTTTTTA aaaaa    1675   0.33 F Potri.009G089400
+  18,  1     504 aaatg CTGTTTTGATTTTTTTTC taact     487   0.00 R Potri.007G029400
+  18,  2     743 atact CAAGTTTTTTTTTTATTA aatca     760   0.18 F Potri.007G029400
+  19,  1     536 ttggt TTCTTTTTTTTAATTTTA ttatt     519   0.01 R Potri.017G146800
+  19,  2     669 ggtac AAAATTTTTTTATTTTTT atttt     686   0.08 F Potri.017G146800
+  19,  3    1048 atgtc TTTATTTTTTTAATTTTC tttta    1065   0.00 F Potri.017G146800
+  19,  4    1075 agtta TTATTTATATTTTTTTTT atcta    1092   0.03 F Potri.017G146800
+  19,  5    1185 tatat ATAATTTGTTTTTTTTTT aaagg    1202   0.12 F Potri.017G146800
+  19,  6    1552 ctgct TGACTTTTTGTTTTTTGT cattt    1569   0.02 F Potri.017G146800
+  19,  7    1835 taaaa TAAATTTTTCTTTTTTTA cttga    1852   0.00 F Potri.017G146800
+  20,  1     108 tggag CAATTTTTTTTTTTTTTA aaaag     125   0.13 F Potri.009G032700
+  20,  2     208 tcatt TATTGTTGTTTTTTTTTT gtcta     191   0.05 R Potri.009G032700
+  20,  3     321 agtta AGTTTTTTTTTTTTATTT aatga     304   0.03 R Potri.009G032700
+  20,  4    1513 taggt TTTAATTTTTTTTTTTTA atata    1496   0.03 R Potri.009G032700
+  21,  1     412 agctg TAATTCTTTTTTCTTTTT tttaa     429   0.01 F Potri.002G152200
+  21,  2     556 catgt TTCCTTTTTTTTTTTTTT gttaa     573   0.83 F Potri.002G152200
+  22,  1      56 ggaat TAAATTTTATTATTTTTT catat      73   0.01 F Potri.017G084600
+  22,  2     119 aggga TTCATTTTTTTTTTTCTT atttt     136   0.28 F Potri.017G084600
+  22,  3     435 tgccc CAAATTAGTTTTTTTTTT caaat     452   0.00 F Potri.017G084600
+  22,  4     482 ggttt TTAGTTTTTTTTTTTTTC aagaa     465   0.16 R Potri.017G084600
+  22,  5    1012 aaaaa TCAGTTTGATTATTTTTT ttaat     995   0.01 R Potri.017G084600
+  22,  6    1722 cgagc TGCTTTTTTCTTCTTTTT cgggt    1739   0.02 F Potri.017G084600
+  23,  1     710 taaaa TAATATTTTTTATTTTTA aaaaa     727   0.09 F Potri.008G140400
+  23,  2    1169 taata TTATTTTTATTTTATTTT atttc    1186   0.18 F Potri.008G140400
+  23,  3    1423 tgtta TTCCTTTGTTTCTTTTTT atatt    1406   0.00 R Potri.008G140400
+  24,  1    1016 cttga CACTTTTTTGTTCTCTTT tcctt     999   0.00 R Potri.015G034500
+  24,  2    1151 ctttt TATGTTTGCTTTTTTTTT gttaa    1134   0.20 R Potri.015G034500
+  24,  3    1747 aattc TATGTTCTTTTATTTTTT atttt    1764   0.61 F Potri.015G034500
+  25,  1     564 atcac TAATTTTTTTTATTTTTC ggaag     547   0.03 R Potri.003G163600
+  25,  2     639 tatag CCTCTTTTTTTTTTTTTT gccct     622   0.65 R Potri.003G163600
+  25,  3    1030 tttta ATGTTTTTTTATCTTTTT tatgt    1013   0.00 R Potri.003G163600
+  25,  4    1765 ttcgt TAGCTTTTGTGTTTTTTT gttat    1782   0.09 F Potri.003G163600
+  26,  1     241 cttaa ATTTTTTTTTTCTTTTTA agggt     224   0.00 R Potri.001G397200
+  26,  2     284 cttga CCCCTCCTTTATTTTTTT tactt     267   0.00 R Potri.001G397200
+  26,  3     386 ccttt TCTTTTTAATTATTTTTT tattt     369   0.00 R Potri.001G397200
+  26,  4     818 cttga TTTGTTTGTTTTTTTTTT aattt     835   0.32 F Potri.001G397200
+  26,  5     912 tttaa TCTTTTTTTTTAATTTTT tagtt     929   0.01 F Potri.001G397200
+  26,  6    1013 ttttt TATGATTTTCTTTTTTTT aattt    1030   0.01 F Potri.001G397200
+  26,  7    1050 ctcaa CATTTTATTTTACTTTTT atcca    1067   0.00 F Potri.001G397200
+  26,  8    1182 gcatt TTATGTTTTTTCTTTTTA tacgg    1199   0.00 F Potri.001G397200
+  26,  9    1387 ggttt ATTCATGTTTTTTTTTTT ttttg    1404   0.00 F Potri.001G397200
+  26, 10    1587 aagac TATCTTTGTTAATTTTTT ttaat    1570   0.00 R Potri.001G397200
+  26, 11    1664 attat CATCTTCTTCTTCTTTTT tccat    1647   0.00 R Potri.001G397200
+  26, 12    1843 ccgaa TATTTTTTTTTCCTTTTC aaacg    1860   0.00 F Potri.001G397200
+  27,  1    1054 ttgat TTTTTTATATTATTTTTT tagat    1071   0.01 F Potri.008G089000
+  27,  2    1123 taaaa TAATATTTTTTTATTTTA aaatc    1106   0.01 R Potri.008G089000
+  27,  3    1281 ttttt TATGTTTTTTTATTTTTA tatgc    1298   0.30 F Potri.008G089000
+  27,  4    1673 tttct TTACTAATTTTTTTTTTA gtatt    1690   0.01 F Potri.008G089000
+  27,  5    1752 aaaaa TATCTTTTTTATTTTTTA aaaat    1735   0.13 R Potri.008G089000
+  27,  6    1783 attgt TGTTTTTTTTTAATATTT tgtta    1766   0.01 R Potri.008G089000
+  28,  1     416 atgat TGAGTTTTTTTTTTTTTT tatta     433   0.76 F Potri.004G074300
+  28,  2    1157 aaaaa TTATTTTTTTTATGTTTT tatgt    1174   0.01 F Potri.004G074300
+  28,  3    1490 tctaa TTTCTCTTATTTTTTTTC agttt    1473   0.00 R Potri.004G074300
+  28,  4    1531 atatt TATATTTTTTTATTTTTA aaaac    1514   0.00 R Potri.004G074300
+  28,  5    1796 ggagg CAATTTTTTTTATGTTTT tatag    1779   0.00 R Potri.004G074300
+  28,  6    1871 gcatt TTATTTTTTATATTTTTT gcatc    1854   0.00 R Potri.004G074300
+  28,  7    1959 atttt TTATTCTTTGTTTTTTTA agata    1942   0.00 R Potri.004G074300
+  29,  1     195 gtaaa ATTCTTCATTTTTTTTTT caaac     212   0.01 F Potri.012G023700
+  29,  2     770 attcc CTTTTTCTTCTTCTTTTC taaat     753   0.00 R Potri.012G023700
+  29,  3     843 caagg TAATTTTTTTTTTAATTT cacat     826   0.00 R Potri.012G023700
+  29,  4    1264 ccatt TCAAATATTTTTTTTTTA atatt    1247   0.00 R Potri.012G023700
+  29,  5    1282 gcata ATCTTATTTGTTTTTTTT ttttc    1299   0.00 F Potri.012G023700
+  29,  6    1937 atgcc TGCCTTTTTTTTTTTTTT gtagt    1920   0.81 R Potri.012G023700
+  30,  1     198 ttctc TCCTATTTATTTCTTTTT ctctc     181   0.00 R Potri.014G025200
+  30,  2     223 gactt TCTGATTTTATTTTTTTT tgact     240   0.09 F Potri.014G025200
+  30,  3     384 gaaaa TAAATATTTTTTTTATTT aaata     401   0.01 F Potri.014G025200
+  30,  4    1581 ttgtt TCTATTTTATTTTTTTTA aaaaa    1564   0.03 R Potri.014G025200
+  30,  5    1662 caaaa TAATTTTTTTTATTTTTT atatc    1679   0.63 F Potri.014G025200
+  31,  1     469 aaaaa TGAATTATTTTTATTTTT ttctt     452   0.00 R Potri.001G252600
+  31,  2     515 tttat TTGATTCTATTTGTTTTT gcatt     498   0.00 R Potri.001G252600
+  31,  3     701 taaag ATTGAATTTTTTTTTTTT ttgga     718   0.00 F Potri.001G252600
+  31,  4     848 tagtt CTTGAATTTTTATTTTTT ataat     831   0.00 R Potri.001G252600
+  31,  5    1149 cttct TTTCTCTTTTTTTTTTTT gccac    1132   0.18 R Potri.001G252600
+  31,  6    1988 atcta TTTATTTTTTTATGTTTC tctct    1971   0.00 R Potri.001G252600
+  32,  1     171 aaatt TTACTTTAGTTTTTTTTT tatag     188   0.04 F Potri.008G122100
+  32,  2     498 tcttc TTCCTTCTTTTTTTTTTT atatc     481   0.88 R Potri.008G122100
+  32,  3    1444 atttg ATCCTATTTTTATTTTTC tgcag    1461   0.00 F Potri.008G122100
+  32,  4    1902 tttag TCATTTTTTATTATTTTT atttt    1919   0.01 F Potri.008G122100
+  33,  1      88 ctttg TGATTTTTTTTAATTTTC tttct     105   0.00 F Potri.018G114100
+  33,  2     324 agcag TTGTTTTATCTTTTTTTT actct     341   0.03 F Potri.018G114100
+  33,  3     465 ggtca CTTGTTTTTTATTTATTT gtttc     482   0.02 F Potri.018G114100
+  33,  4     650 taccc GAAATTTTTTTTTTTTTT gccag     667   0.47 F Potri.018G114100
+  33,  5    1750 aagat CAATATTTTTTTTTATTT actct    1767   0.01 F Potri.018G114100
+  33,  6    1965 gtgga AGCCTTTTTGTTTTTTTT ggggt    1948   0.10 R Potri.018G114100
+  34,  1     203 gcgac TACTTTCTTTTTATTATC acttc     186   0.00 R Potri.010G169400
+  34,  2    1365 atagc TGCCTTTTGTTTTTTTTT tctgt    1382   0.72 F Potri.010G169400
+  35,  1     710 tttca TTGGTTTTTTTTTTTTTA aaaaa     727   0.59 F Potri.001G029800
+  35,  2    1045 ttcca TCACTGCTTTTTTTTTTT ccaac    1062   0.24 F Potri.001G029800
+  35,  3    1871 gtatg CATGTATTTTTATTTTTA ttttg    1854   0.00 R Potri.001G029800
+  36,  1     164 cttat TGTTTTTTTCTTTTCTTA ctgcg     147   0.00 R Potri.011G106800
+  36,  2     249 ttttt TCACATTGATTTTTTTTC cccca     232   0.00 R Potri.011G106800
+  36,  3     267 gtttt TCTTTCTCTTTTTTTTTT tcaca     250   0.01 R Potri.011G106800
+  36,  4     976 taatc TAAGAATTTTTTTTTTTT gtgat     993   0.02 F Potri.011G106800
+  36,  5    1178 attca TTTATTTTTTAATTTTTT aatat    1195   0.00 F Potri.011G106800
+  36,  6    1528 tcaag CCTATTGTTTTTATTTTT tctta    1545   0.00 F Potri.011G106800
+  36,  7    1592 taatt TTTTATTTTTTTATTTTC caaag    1575   0.00 R Potri.011G106800
+  36,  8    1730 ttaat TATTTTTTTATTTTTTTA taatt    1713   0.02 R Potri.011G106800
+  36,  9    1997   ttg CTTTTTTTTTTTTTTTTT tatta    1980   0.10 R Potri.011G106800
+  37,  1     840 gtgtg TCTCAAGTTTTTTTTTTC aattt     823   0.00 R Potri.002G081000
+  37,  2     959 ggctt AAACTTTTTTTTTTTTTT cagtt     942   0.72 R Potri.002G081000
+  37,  3    1980 gagac CAAGATTTTTTTTATTTT ttt      1997   0.01 F Potri.002G081000
+                       *  ***************
+
+
+Column 1 :  Sequence Number, Site Number
+Column 2 :  Left End Location
+Column 4 :  Motif Element
+Column 6 :  Right End Location
+Column 7 :  Probability of Element
+Column 8 :  Forward Motif (F) or Reverse Complement (R) 
+Column 9 :  Sequence Description from Fast A input
+
+Log Motif portion of MAP for motif a = -1725.88541
+Log Fragmentation portion of MAP for motif a = -4.78749
+
+
+Log Background portion of Map = -93902.52356
+Log Alignment portion of Map = -1331.08912
+Log Site/seq portion of Map = 0.00000
+Log Null Map = -97178.73016
+Log Map = 214.44458
+
+
+log MAP = sum of motif and fragmentation parts of MAP + background + alignment + sites/seq - Null
+
+Frequency Map = 5.898108
+Nearopt Map   = 46.906596
+Maximal Map   = 214.444585
+Total Time 10 sec (0.166667 min)
+Elapsed time: 9.880000 secs
+DOF[0] = 48

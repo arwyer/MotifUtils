@@ -72,7 +72,7 @@
         "service-mapping": {
             "url": "",
             "name": "MotifUtils",
-            "method": "importFromNarrative",
+            "method": "uploadMotifSet",
             "input_mapping": [
                 {
                     "narrative_system_variable": "workspace",
@@ -94,7 +94,7 @@
             "output_mapping": [
                 {
                     "service_method_output_path": [0],
-                    "target_property": "output"
+                    "target_property": "out"
                 },
                 {
                     "narrative_system_variable": "workspace",
