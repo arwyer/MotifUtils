@@ -15,7 +15,7 @@ class GibbsUtil:
         self.callback_url = os.environ['SDK_CALLBACK_URL']
         self.dfu = DataFileUtil(self.callback_url)
 
-    def parse(self, path):
+    def parse(self, path, params):
         if not os.path.isdir(path):
             raise ValueError(f'Please pass a directory to the gibbs parser in Motif Utils. \n'
                              f'A file was passed: {path}')
