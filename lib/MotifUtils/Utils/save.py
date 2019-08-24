@@ -13,6 +13,7 @@ class MotifSaver:
                             level=logging.INFO)
 
     def saveMotifSet(self, motifset, params):
+        exit(motifset)
         if isinstance(motifset, list):
             logging.info('Saving multiple motifset objects...')
             # TODO: accept lists of constructed motif set object
@@ -22,7 +23,7 @@ class MotifSaver:
                 'id': self.dfu.ws_name_to_id(params['ws_name']),
                 'objects': [{
                     'type': 'KBaseGeneRegulation.MotifSet',
-                    'data': motifset[0],
+                    'data': motifset,
                     'name': str(uuid.uuid4())
                 }]
             })[0]
@@ -35,7 +36,7 @@ class MotifSaver:
                 'id': self.dfu.ws_name_to_id(params['ws_name']),
                 'objects': [{
                     'type': 'KBaseGeneRegulation.MotifSet',
-                    'data': motifset,
+                    'data': [motifset],
                     'name': str(uuid.uuid4())
                 }]
             })[0]

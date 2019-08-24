@@ -95,7 +95,7 @@ class MotifUtilsTest(unittest.TestCase):
             'seq_set_ref': '28598/21/1'
         }
 
-        result = self.getImpl().parseMotifSet(self.getContext(), params)
+        result = self.getImpl().saveMotifSet(self.getContext(), params)
 
         # validate dfu type spec
         resultobj = {
