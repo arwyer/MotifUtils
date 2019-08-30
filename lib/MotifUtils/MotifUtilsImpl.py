@@ -166,17 +166,17 @@ class MotifUtils:
 
     def downloadMotifSet(self, ctx, params):
         """
-        :param params: instance of type "downloadParams" -> structure:
-           parameter "format" of type "motif_format" (Input/Output motif
-           format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC",
-           "MFMD")), parameter "motifset" of type "MotifSetRef" (Ref to a
-           sequence set @id ws KBaseGeneRegulation.MotifSet), parameter
-           "ws_name" of type "workspace_name" (workspace name of the object)
-        :returns: instance of type "UIOutParams" -> structure: parameter
-           "report_name" of String, parameter "report_ref" of String,
-           parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
-           @id ws KBaseGeneRegulation.MotifSet)
-        """
+                    :param params: instance of type "downloadParams" -> structure:
+                       parameter "format" of type "motif_format" (Input/Output motif
+                       format @range("MEME", "JASPAR", "GIBBS", "HOMER", "TRANSFAC",
+                       "MFMD")), parameter "motifset" of type "MotifSetRef" (Ref to a
+                       sequence set @id ws KBaseGeneRegulation.MotifSet), parameter
+                       "ws_name" of type "workspace_name" (workspace name of the object)
+                    :returns: instance of type "UIOutParams" -> structure: parameter
+                       "report_name" of String, parameter "report_ref" of String,
+                       parameter "motif_obj" of type "MotifSetRef" (Ref to a sequence set
+                       @id ws KBaseGeneRegulation.MotifSet)
+                    """
         # ctx is the context object
         # return variables are: out
         #BEGIN downloadMotifSet

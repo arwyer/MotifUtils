@@ -138,4 +138,4 @@ class GibbsUtil:
                     before = -1
                     after = -1
 
-        return motifDict
+        return self.MotifUtil.parse_motif_list(motifDict['Locations'], params)
