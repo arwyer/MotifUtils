@@ -5,6 +5,7 @@ from Bio import motifs
 from Bio import SeqIO
 from Bio.Alphabet import IUPAC
 from io import StringIO
+from .MotifUtil import MotifUtil
 
 from installed_clients.DataFileUtilClient import DataFileUtil
 
@@ -14,6 +15,7 @@ class GibbsUtil:
         self.scratch = config['scratch']
         self.callback_url = os.environ['SDK_CALLBACK_URL']
         self.dfu = DataFileUtil(self.callback_url)
+        self.MotifUtil = MotifUtil(config)
 
     def parse(self, path, params):
         if not os.path.isdir(path):
