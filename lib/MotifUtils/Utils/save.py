@@ -13,16 +13,13 @@ class MotifSaver:
                             level=logging.INFO)
 
     def saveMotifSet(self, motifset, params):
-        pp(motifset)
-        pp(type(motifset))
-        exit()
         logging.info('Saving a single motifset object...')
         # TODO: accept object name
         obj = self.dfu.save_objects({
             'id': self.dfu.ws_name_to_id(params['ws_name']),
             'objects': [{
                 'type': 'KBaseGeneRegulation.MotifSet',
-                'data': motifset,
+                'data': motifset[0],
                 'name': str(uuid.uuid4())
             }]
         })[0]
