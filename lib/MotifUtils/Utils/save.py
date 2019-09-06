@@ -13,6 +13,8 @@ class MotifSaver:
                             level=logging.INFO)
 
     def saveMotifSet(self, motifset, params):
+        pp(motifset)
+        exit()
         logging.info('Saving a single motifset object...')
         # TODO: accept object name
         obj = self.dfu.save_objects({
